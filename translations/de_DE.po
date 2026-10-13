@@ -1,0 +1,685 @@
+# German translations for DynGUA-PD.
+# Copyright (C) 2026 gebra
+# SPDX-License-Identifier: Apache-2.0
+# This file is distributed under the Apache License, Version 2.0.
+# gebra <projects@gbrands.de>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DynGUA-PD 0.8.0 Beta RC1\n"
+"Report-Msgid-Bugs-To: projects@gbrands.de\n"
+"POT-Creation-Date: 2026-10-13 13:24+0200\n"
+"PO-Revision-Date: 2026-10-13 13:30+0200\n"
+"Last-Translator: gebra <projects@gbrands.de>\n"
+"Language: de_DE\n"
+"Language-Team: German\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: files/usr/local/pkg/dgpd.inc:550
+#, python-format, php-format
+msgid "%s: conflict-free native PD change detected"
+msgstr "%s: Konfliktfreie native PD-Änderung erkannt"
+
+#: files/usr/local/pkg/dgpd.inc:553
+#, python-format, php-format
+msgid "%s: native PD configuration changed externally: %s"
+msgstr "%s: Native PD-Konfiguration wurde extern geändert: %s"
+
+#: files/usr/local/pkg/dgpd.inc:980 files/usr/local/pkg/dgpd.inc:1286
+msgid "; resolve in Services > Dynamic GUA-PD"
+msgstr "; unter Dienste > Dynamic GUA-PD beheben"
+
+#: files/usr/local/pkg/dgpd.inc:567 files/usr/local/pkg/dgpd.inc:601
+#: files/usr/local/pkg/dgpd.inc:804
+msgid "A native apply is pending"
+msgstr "Eine native Anwendung steht aus"
+
+#: files/usr/local/pkg/dgpd.inc:690
+msgid "A native apply is pending; use Recover before another change"
+msgstr "Eine native Anwendung steht aus; verwenden Sie vor einer weiteren Änderung Wiederherstellen"
+
+#: files/usr/local/pkg/dgpd.inc:1370 files/usr/local/pkg/dgpd.inc:1422
+msgid "Accept Native Change"
+msgstr "Native Änderung übernehmen"
+
+#: files/usr/local/pkg/dgpd.inc:1392
+msgid "Accept a fully validated, upstream-contained and collision-free native Kea PD change as the new DGPD assignment."
+msgstr "Eine vollständig geprüfte, im Upstream enthaltene und konfliktfreie native Kea-PD-Änderung als neue DGPD-Zuweisung übernehmen."
+
+#: files/usr/local/pkg/dgpd.inc:1353 files/usr/local/pkg/dgpd.inc:1420
+msgid "Acknowledge Notice"
+msgstr "Hinweis bestätigen"
+
+#: files/usr/local/pkg/dgpd.inc:1375
+msgid "Acknowledge the persistent downstream-impact notice after checking affected routers."
+msgstr "Den dauerhaften Hinweis zu Downstream-Auswirkungen nach Prüfung der betroffenen Router bestätigen."
+
+#: files/usr/local/pkg/dgpd_kea.inc:65
+msgid "Active assignments"
+msgstr "Aktive Zuweisungen"
+
+#: files/usr/local/pkg/dgpd.inc:1422
+msgid "Adopt a validated, upstream-contained, collision-free native assignment."
+msgstr "Eine geprüfte, im Upstream enthaltene und konfliktfreie native Zuweisung übernehmen."
+
+#: files/usr/local/pkg/dgpd.inc:421
+msgid "Allocator upstream missing"
+msgstr "Upstream des Allocators fehlt"
+
+#: files/usr/local/pkg/dgpd.inc:1379
+msgid "Allocator upstream prefix and pool length."
+msgstr "Upstream-Präfix und Pool-Länge des Allocators."
+
+#: files/usr/local/pkg/dgpd.inc:603
+msgid "Already unmanaged"
+msgstr "Bereits nicht verwaltet"
+
+#: files/usr/local/pkg/dgpd.inc:645
+msgid "An active IA_PD lease exists in this DGPD assignment; explicit revocation confirmation is required"
+msgstr "Für diese DGPD-Zuweisung besteht eine aktive IA_PD-Lease; der Widerruf muss ausdrücklich bestätigt werden"
+
+#: files/usr/local/pkg/dgpd.inc:1363 files/usr/local/pkg/dgpd.inc:1414
+msgid "Apply Assignment"
+msgstr "Zuweisung anwenden"
+
+#: files/usr/local/pkg/dgpd.inc:1354
+msgid "Available Prefixes"
+msgstr "Verfügbare Präfixe"
+
+#: files/usr/local/pkg/dgpd.inc:1042
+msgid "Cannot lock DGPD worker signal"
+msgstr "DGPD-Worker-Signal kann nicht gesperrt werden"
+
+#: files/usr/local/pkg/dgpd.inc:1038
+msgid "Cannot open DGPD worker signal; pending state retained"
+msgstr "DGPD-Worker-Signal kann nicht geöffnet werden; ausstehender Zustand bleibt erhalten"
+
+#: files/usr/local/pkg/dgpd.inc:1051
+msgid "Cannot save DGPD worker signal"
+msgstr "DGPD-Worker-Signal kann nicht gespeichert werden"
+
+#: files/usr/local/pkg/dgpd.inc:1386
+msgid "Save the staged assignment, verify the live Kea pool, and finalize DGPD status."
+msgstr "Die vorbereitete Zuweisung speichern, den aktiven Kea-Pool prüfen und den DGPD-Status abschließen."
+
+#: files/usr/local/pkg/dgpd.inc:1415
+msgid "Save the staged operation and verify the live Kea pool."
+msgstr "Die vorbereitete Operation speichern und den aktiven Kea-Pool prüfen."
+
+#: files/usr/local/pkg/dgpd.inc:697
+msgid "Allow Interface Management for the selected interface (checkbox)"
+msgstr "Aktivieren Sie für die ausgewählte Schnittstelle das Kontrollkästchen „Schnittstellenverwaltung erlauben“"
+
+#: files/usr/local/pkg/dgpd.inc:1237
+msgid "Confirm that downstream routers may require DHCPv6-PD renewal or manual reconfiguration"
+msgstr "Bestätigen Sie, dass Downstream-Router möglicherweise eine DHCPv6-PD-Erneuerung oder manuelle Neukonfiguration benötigen"
+
+#: files/usr/local/pkg/dgpd.inc:1420
+msgid "Confirm that the persistent downstream impact notice was reviewed."
+msgstr "Bestätigen, dass der dauerhafte Hinweis zu Downstream-Auswirkungen geprüft wurde."
+
+#: files/usr/local/pkg/dgpd.inc:586
+msgid "Conflict-free native PD change accepted; DGPD ownership updated."
+msgstr "Konfliktfreie native PD-Änderung übernommen; DGPD-Zuständigkeit aktualisiert."
+
+#: files/usr/local/pkg/dgpd.inc:1413
+msgid "Copy a free, unreserved candidate into the editor without saving it."
+msgstr "Einen freien, nicht reservierten Kandidaten in den Editor kopieren, ohne ihn zu speichern."
+
+#: files/usr/local/pkg/dgpd.inc:1384
+msgid "Copy the displayed allocator proposal into Delegated PD and Delegated Length, replacing your edits. This does not save, reserve a prefix, or change services. Apply checks availability again."
+msgstr "Den angezeigten Allocator-Vorschlag in Delegiertes PD und Delegierte Länge kopieren und vorhandene Eingaben ersetzen. Dadurch wird nichts gespeichert, kein Präfix reserviert und kein Dienst geändert. Beim Anwenden wird die Verfügbarkeit erneut geprüft."
+
+#: files/usr/local/pkg/dgpd.inc:1355
+msgid "Current Assignment"
+msgstr "Aktuelle Zuweisung"
+
+#: files/usr/local/pkg/dgpd_kea.inc:49
+msgid "DGPD Assignment"
+msgstr "DGPD-Zuweisung"
+
+#: files/usr/local/pkg/dgpd.inc:1361
+msgid "Allow Interface Management"
+msgstr "Schnittstellenverwaltung erlauben"
+
+#: files/usr/local/pkg/dgpd.inc:871
+msgid "DGPD is busy; pending operation retained"
+msgstr "DGPD ist beschäftigt; die ausstehende Operation bleibt erhalten"
+
+#: files/usr/local/pkg/dgpd.inc:561 files/usr/local/pkg/dgpd.inc:595
+#: files/usr/local/pkg/dgpd.inc:678 files/usr/local/pkg/dgpd.inc:792
+msgid "DGPD is busy; retry the action"
+msgstr "DGPD ist beschäftigt; wiederholen Sie die Aktion"
+
+#: files/usr/local/pkg/dgpd.inc:608
+msgid "DGPD ownership released; native DHCPv6 configuration was not changed."
+msgstr "DGPD-Zuständigkeit freigegeben; die native DHCPv6-Konfiguration wurde nicht geändert."
+
+#: files/usr/local/pkg/dgpd.inc:925
+msgid "DGPD state changed during native apply; review required"
+msgstr "Der DGPD-Zustand wurde während der nativen Anwendung geändert; eine Prüfung ist erforderlich"
+
+#: files/usr/local/pkg/dgpd.inc:1356
+msgid "Interface for Delegation"
+msgstr "Schnittstelle für Delegation"
+
+#: files/usr/local/pkg/dgpd.inc:1367 files/usr/local/pkg/dgpd.inc:1418
+msgid "Delete"
+msgstr "Löschen"
+
+#: files/usr/local/pkg/dgpd.inc:1365 files/usr/local/pkg/dgpd.inc:1416
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: files/usr/local/pkg/dgpd.inc:1387
+msgid "Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease is revoked only after a downstream-interruption warning is confirmed."
+msgstr "Den nativen PD-Pool deaktivieren und die DGPD-Reservierung beibehalten. Eine aktive zugehörige IA_PD-Lease wird erst nach Bestätigung der Warnung vor einer Downstream-Unterbrechung widerrufen."
+
+#: files/usr/local/pkg/dgpd.inc:1360
+msgid "Downstream Impact"
+msgstr "Downstream-Auswirkungen"
+
+#: files/usr/local/pkg/dgpd.inc:1151
+msgid "Downstream Prefix Change"
+msgstr "Änderung des Downstream-Präfixes"
+
+#: files/usr/local/pkg/dgpd.inc:1205
+msgid "Downstream-impact notice acknowledged."
+msgstr "Hinweis zu Downstream-Auswirkungen bestätigt."
+
+#: files/usr/local/pkg/dgpd.inc:476
+msgid "Duplicate old PD pool; ownership is ambiguous"
+msgstr "Alter PD-Pool ist doppelt vorhanden; die Zuständigkeit ist nicht eindeutig"
+
+#: files/usr/local/pkg/dgpd_kea.inc:64
+msgid "Dynamic GUA-PD Assignments"
+msgstr "Dynamic-GUA-PD-Zuweisungen"
+
+#: files/usr/local/pkg/dgpd.inc:1366 files/usr/local/pkg/dgpd.inc:1417
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: files/usr/local/pkg/dgpd.inc:286
+msgid "Enable DHCPv6 on the selected interface"
+msgstr "Aktivieren Sie DHCPv6 auf der ausgewählten Schnittstelle"
+
+#: files/usr/local/pkg/dgpd.inc:122
+msgid "Enable Kea DHCPv6: The control socket is unavailable"
+msgstr "Aktivieren Sie Kea DHCPv6: Der Kontroll-Socket ist nicht verfügbar"
+
+#: files/usr/local/pkg/dgpd.inc:618
+msgid "Enable Kea lease commands: Safe lease verification failed"
+msgstr "Aktivieren Sie die Kea-Lease-Befehle: Die sichere Lease-Prüfung ist fehlgeschlagen"
+
+#: files/usr/local/pkg/dgpd.inc:290
+msgid "Enable Track Interface on the selected interface"
+msgstr "Aktivieren Sie Track Interface auf der ausgewählten Schnittstelle"
+
+#: files/usr/local/pkg/dgpd.inc:1088
+msgid "Error"
+msgstr "Fehler"
+
+#: files/usr/local/pkg/dgpd.inc:273
+msgid "Expected a JSON object"
+msgstr "Ein JSON-Objekt wurde erwartet"
+
+#: files/usr/local/pkg/dgpd.inc:300
+msgid "Expected exactly one live Kea subnet for selected interface"
+msgstr "Für die ausgewählte Schnittstelle wurde genau ein aktives Kea-Subnetz erwartet"
+
+#: files/usr/local/pkg/dgpd.inc:1383
+msgid "Explicitly authorize DGPD to manage this interface. Existing native PD assignments remain protected."
+msgstr "DGPD ausdrücklich zur Verwaltung dieser Schnittstelle autorisieren. Vorhandene native PD-Zuweisungen bleiben geschützt."
+
+#: files/usr/local/pkg/dgpd.inc:311
+msgid "FAIL: Kea DHCPv6 is not enabled"
+msgstr "FEHLER: Kea DHCPv6 ist nicht aktiviert"
+
+#: files/usr/local/pkg/dgpd.inc:308
+msgid "FAIL: Track Interface is not enabled"
+msgstr "FEHLER: Track Interface ist nicht aktiviert"
+
+#: files/usr/local/pkg/dgpd.inc:1382
+msgid "I understand that changing an existing delegated prefix may require DHCPv6-PD renewal or manual reconfiguration on downstream routers."
+msgstr "Mir ist bewusst, dass die Änderung eines vorhandenen delegierten Präfixes auf Downstream-Routern eine DHCPv6-PD-Erneuerung oder manuelle Neukonfiguration erfordern kann."
+
+#: files/usr/local/pkg/dgpd.inc:778
+#, python-format, php-format
+msgid "INFO: PD Pool Prefix normalized from %s to %s/%d. "
+msgstr "INFO: PD-Pool-Präfix von %s auf %s/%d normalisiert. "
+
+#: files/usr/local/pkg/dgpd.inc:1380
+msgid "IPv6 address of the Kea delegation pool, without a CIDR length."
+msgstr "IPv6-Adresse des Kea-Delegationspools ohne CIDR-Länge."
+
+#: files/usr/local/pkg/dgpd.inc:892
+msgid "Inactive assignment conflict; native PD fields were changed"
+msgstr "Konflikt bei inaktiver Zuweisung; native PD-Felder wurden geändert"
+
+#: files/usr/local/pkg/dgpd.inc:1091
+msgid "Information"
+msgstr "Information"
+
+#: files/usr/local/pkg/dgpd_kea.inc:48
+msgid "Interface"
+msgstr "Schnittstelle"
+
+#: files/usr/local/pkg/dgpd.inc:1046
+msgid "Invalid DGPD signal generation"
+msgstr "Ungültige DGPD-Signalgeneration"
+
+#: files/usr/local/pkg/dgpd.inc:22
+msgid "Invalid IPv6 prefix"
+msgstr "Ungültiges IPv6-Präfix"
+
+#: files/usr/local/pkg/dgpd.inc:341
+msgid "Invalid allocator report"
+msgstr "Ungültiger Allocator-Bericht"
+
+#: files/usr/local/pkg/dgpd.inc:445
+msgid "Invalid pool/delegation length"
+msgstr "Ungültige Pool-/Delegationslänge"
+
+#: files/usr/local/pkg/dgpd.inc:439
+msgid "Invalid prefix lengths"
+msgstr "Ungültige Präfixlängen"
+
+#: files/usr/local/pkg/dgpd.inc:661
+msgid "Kea IA_PD lease revocation could not be verified; change blocked"
+msgstr "Der Widerruf der Kea-IA_PD-Lease konnte nicht verifiziert werden; Änderung blockiert"
+
+#: files/usr/local/pkg/dgpd.inc:172
+msgid "Kea config-get failed"
+msgstr "Kea config-get ist fehlgeschlagen"
+
+#: files/usr/local/pkg/dgpd.inc:656
+#, python-format, php-format
+msgid "Kea could not revoke IA_PD lease %s/%d"
+msgstr "Kea konnte die IA_PD-Lease %s/%d nicht widerrufen"
+
+#: files/usr/local/pkg/dgpd.inc:864
+msgid "Kea is unavailable after native apply"
+msgstr "Kea ist nach der nativen Anwendung nicht verfügbar"
+
+#: files/usr/local/pkg/dgpd.inc:154
+msgid "Kea response timeout"
+msgstr "Zeitüberschreitung bei der Kea-Antwort"
+
+#: files/usr/local/pkg/dgpd.inc:147
+msgid "Kea response too large"
+msgstr "Kea-Antwort ist zu groß"
+
+#: files/usr/local/pkg/dgpd.inc:135
+msgid "Kea socket write failed"
+msgstr "Schreiben auf den Kea-Socket fehlgeschlagen"
+
+#: files/usr/local/pkg/dgpd.inc:58
+msgid "Legacy runtime DGPD assignments detected; review before native migration"
+msgstr "Veraltete DGPD-Laufzeitzuweisungen erkannt; vor der nativen Migration prüfen"
+
+#: files/usr/local/pkg/dgpd.inc:1376
+msgid "Loading allocator proposals."
+msgstr "Allocator-Vorschläge werden geladen."
+
+#: files/usr/local/pkg/dgpd.inc:77
+msgid "Malformed DGPD assignments"
+msgstr "Fehlerhafte DGPD-Zuweisungen"
+
+#: files/usr/local/pkg/dgpd.inc:83
+msgid "Malformed DGPD ownership record"
+msgstr "Fehlerhafter DGPD-Zuständigkeitsdatensatz"
+
+#: files/usr/local/pkg/dgpd.inc:90
+msgid "Malformed DGPD pending operation"
+msgstr "Fehlerhafte ausstehende DGPD-Operation"
+
+#: files/usr/local/pkg/dgpd.inc:632
+msgid "Malformed IA_PD lease response; change blocked"
+msgstr "Fehlerhafte IA_PD-Lease-Antwort; Änderung blockiert"
+
+#: files/usr/local/pkg/dgpd.inc:164
+msgid "Malformed Kea response"
+msgstr "Fehlerhafte Kea-Antwort"
+
+#: files/usr/local/pkg/dgpd.inc:622 files/usr/local/pkg/dgpd.inc:627
+msgid "Malformed lease response; change blocked"
+msgstr "Fehlerhafte Lease-Antwort; Änderung blockiert"
+
+#: files/usr/local/pkg/dgpd.inc:1173
+msgid "Multiple DGPD actions submitted"
+msgstr "Mehrere DGPD-Aktionen wurden gleichzeitig übermittelt"
+
+#: files/usr/local/pkg/dgpd.inc:684 files/usr/local/pkg/dgpd.inc:798
+msgid "Native DHCP configuration is busy; retry the action"
+msgstr "Die native DHCP-Konfiguration ist beschäftigt; wiederholen Sie die Aktion"
+
+#: files/usr/local/pkg/dgpd_kea.inc:51
+msgid "Native DHCPv6"
+msgstr "Natives DHCPv6"
+
+#: files/usr/local/pkg/dgpd.inc:533
+msgid "Native Kea runtime does not contain the changed PD assignment"
+msgstr "Die aktive Kea-Konfiguration enthält die geänderte PD-Zuweisung nicht"
+
+#: files/usr/local/pkg/dgpd.inc:1293
+msgid "Native Kea runtime verification failed"
+msgstr "Prüfung der aktiven Kea-Konfiguration fehlgeschlagen"
+
+#: files/usr/local/pkg/dgpd.inc:917
+msgid "Native Kea runtime verification failed; pending state retained"
+msgstr "Prüfung der aktiven Kea-Konfiguration fehlgeschlagen; ausstehender Zustand bleibt erhalten"
+
+#: files/usr/local/pkg/dgpd.inc:515
+msgid "Native PD assignment is incomplete"
+msgstr "Native PD-Zuweisung ist unvollständig"
+
+#: files/usr/local/pkg/dgpd.inc:521
+msgid "Native PD assignment is not canonically aligned"
+msgstr "Native PD-Zuweisung ist nicht kanonisch ausgerichtet"
+
+#: files/usr/local/pkg/dgpd.inc:529
+msgid "Native PD assignment overlaps another DGPD assignment"
+msgstr "Native PD-Zuweisung überschneidet sich mit einer anderen DGPD-Zuweisung"
+
+#: files/usr/local/pkg/dgpd.inc:512
+msgid "Native PD assignment was deleted"
+msgstr "Native PD-Zuweisung wurde gelöscht"
+
+#: files/usr/local/pkg/dgpd.inc:930
+msgid "Native PD configuration changed during removal"
+msgstr "Native PD-Konfiguration wurde während des Entfernens geändert"
+
+#: files/usr/local/pkg/dgpd.inc:464 files/usr/local/pkg/dgpd.inc:707
+#: files/usr/local/pkg/dgpd.inc:710
+msgid "Native PD configuration is not owned by DGPD or was changed externally"
+msgstr "Die native PD-Konfiguration wird nicht von DGPD verwaltet oder wurde extern geändert"
+
+#: files/usr/local/pkg/dgpd.inc:1533
+msgid "Native apply pending. Use Recover after resolving a failure."
+msgstr "Native Anwendung steht aus. Verwenden Sie nach Behebung des Fehlers Wiederherstellen."
+
+#: files/usr/local/pkg/dgpd.inc:571
+msgid "No DGPD assignment to update"
+msgstr "Keine DGPD-Zuweisung zum Aktualisieren"
+
+#: files/usr/local/pkg/dgpd_kea.inc:33
+msgid "No active Dynamic GUA-PD assignments."
+msgstr "Keine aktiven Dynamic-GUA-PD-Zuweisungen."
+
+#: files/usr/local/pkg/dgpd.inc:1524
+msgid "No collision-free proposal."
+msgstr "Kein konfliktfreier Vorschlag."
+
+#: files/usr/local/pkg/dgpd.inc:1003
+msgid "No collision-free replacement pool"
+msgstr "Kein konfliktfreier Ersatz-Pool"
+
+#: files/usr/local/pkg/dgpd.inc:1508
+msgid "No eligible interface or proposal available."
+msgstr "Keine geeignete Schnittstelle oder kein Vorschlag verfügbar."
+
+#: files/usr/local/pkg/dgpd.inc:1250
+msgid "No free allocator proposal"
+msgstr "Kein freier Allocator-Vorschlag"
+
+#: files/usr/local/pkg/dgpd.inc:1377
+msgid "No interface selected."
+msgstr "Keine Schnittstelle ausgewählt."
+
+#: files/usr/local/pkg/dgpd.inc:1196
+msgid "No pending DGPD operation to apply"
+msgstr "Keine ausstehende DGPD-Operation zum Anwenden"
+
+#: files/usr/local/pkg/dgpd.inc:1210
+msgid "No pending DGPD operation to recover"
+msgstr "Keine ausstehende DGPD-Operation zur Wiederherstellung"
+
+#: files/usr/local/pkg/dgpd.inc:808
+msgid "No saved DGPD assignment to restore"
+msgstr "Keine gespeicherte DGPD-Zuweisung zur Wiederherstellung"
+
+#: files/usr/local/pkg/dgpd.inc:1320 files/usr/local/pkg/dgpd.inc:1325
+msgid "No tracked interface found. Enable Track Interface and Kea DHCPv6 on the desired interface."
+msgstr "Keine nachverfolgte Schnittstelle gefunden. Aktivieren Sie Track Interface und Kea DHCPv6 auf der gewünschten Schnittstelle."
+
+#: files/usr/local/pkg/dgpd.inc:577
+msgid "No valid native change to accept"
+msgstr "Keine gültige native Änderung zum Übernehmen"
+
+#: files/usr/local/pkg/dgpd_kea.inc:53
+msgid "Open Dynamic GUA-PD"
+msgstr "Dynamic GUA-PD öffnen"
+
+#: files/usr/local/pkg/dgpd.inc:1503
+msgid "Open native DHCPv6 settings"
+msgstr "Native DHCPv6-Einstellungen öffnen"
+
+#: files/usr/local/pkg/dgpd.inc:1358
+msgid "PD Pool Prefix"
+msgstr "PD-Pool-Präfix"
+
+#: files/usr/local/pkg/dgpd.inc:1478
+msgid "Pool"
+msgstr "Pool"
+
+#: files/usr/local/pkg/dgpd.inc:1359
+msgid "Pool LEN"
+msgstr "Pool-Länge"
+
+#: files/usr/local/pkg/dgpd.inc:452
+msgid "Pool is outside the current allocator upstream prefix"
+msgstr "Der Pool liegt außerhalb des aktuellen Upstream-Präfixes des Allocators"
+
+#: files/usr/local/pkg/dgpd.inc:725
+msgid "Pool overlaps another DGPD assignment"
+msgstr "Der Pool überschneidet sich mit einer anderen DGPD-Zuweisung"
+
+#: files/usr/local/pkg/dgpd.inc
+msgid "Prefix deleted. Save Settings to finalize operation"
+msgstr "Präfix gelöscht. Mit Einstellungen speichern den Vorgang abschließen"
+
+#: files/usr/local/pkg/dgpd.inc:1381
+msgid "Prefix length of the complete Kea PD pool. Kea delegates this complete prefix to one downstream router."
+msgstr "Präfixlänge des vollständigen Kea-PD-Pools. Kea delegiert dieses vollständige Präfix an einen Downstream-Router."
+
+#: files/usr/local/pkg/dgpd.inc:411
+msgid "Prefix sources disagree: allocator / Router Advertisements; changes blocked"
+msgstr "Präfixquellen widersprechen sich: Allocator / Router Advertisements; Änderungen blockiert"
+
+#: files/usr/local/pkg/dgpd.inc:1511
+msgid "Proposal (not reserved)"
+msgstr "Vorschlag (nicht reserviert)"
+
+#: files/usr/local/pkg/dgpd.inc:1362 files/usr/local/pkg/dgpd.inc:1413
+msgid "Propose"
+msgstr "Vorschlagen"
+
+#: files/usr/local/pkg/dgpd.inc:1313
+#, python-format, php-format
+msgid "RA fallback: %s/%d advertised; upstream unconfirmed, changes blocked."
+msgstr "RA-Fallback: %s/%d angekündigt; Upstream unbestätigt, Änderungen blockiert."
+
+#: files/usr/local/pkg/dgpd.inc:1368 files/usr/local/pkg/dgpd.inc:1419
+msgid "Recover"
+msgstr "Wiederherstellen"
+
+#: files/usr/local/pkg/dgpd.inc:1390
+msgid "Recover a saved operation after resolving a failure. This does not reset assignments or remove leases."
+msgstr "Eine gespeicherte Operation nach Behebung eines Fehlers wiederherstellen. Zuweisungen werden nicht zurückgesetzt und Leases nicht entfernt."
+
+#: files/usr/local/pkg/dgpd.inc:1371 files/usr/local/pkg/dgpd.inc:1423
+msgid "Release Ownership"
+msgstr "Zuständigkeit freigeben"
+
+#: files/usr/local/pkg/dgpd.inc:1393
+msgid "Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged."
+msgstr "Die DGPD-Reservierung freigeben und die aktuelle native DHCPv6-Konfiguration unverändert lassen."
+
+#: files/usr/local/pkg/dgpd.inc:1389
+msgid "Remove the native PD pool and release the DGPD reservation. Warning: Active IA_PD leases in this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may require renewal or manual reconfiguration."
+msgstr "Den nativen PD-Pool entfernen und die DGPD-Reservierung freigeben. Warnung: Aktive IA_PD-Leases in diesem von DGPD verwalteten Pool werden widerrufen. Dadurch wird die Downstream-Präfixdelegation unterbrochen und möglicherweise eine Erneuerung oder manuelle Neukonfiguration erforderlich."
+
+#: files/usr/local/pkg/dgpd.inc:1418
+msgid "Remove the native pool and release its DGPD reservation."
+msgstr "Den nativen Pool entfernen und seine DGPD-Reservierung freigeben."
+
+#: files/usr/local/pkg/dgpd.inc:1416
+msgid "Remove the native pool and retain the DGPD reservation."
+msgstr "Den nativen Pool entfernen und die DGPD-Reservierung beibehalten."
+
+#: files/usr/local/pkg/dgpd.inc:1421
+msgid "Replace an external native change with the saved DGPD assignment."
+msgstr "Eine externe native Änderung durch die gespeicherte DGPD-Zuweisung ersetzen."
+
+#: files/usr/local/pkg/dgpd.inc:701
+msgid "Requested transition does not match the assignment status"
+msgstr "Der angeforderte Übergang entspricht nicht dem Zuweisungsstatus"
+
+#: files/usr/local/pkg/dgpd.inc:1369 files/usr/local/pkg/dgpd.inc:1421
+msgid "Restore DGPD Assignment"
+msgstr "DGPD-Zuweisung wiederherstellen"
+
+#: files/usr/local/pkg/dgpd.inc:1419
+msgid "Restore Save Settings for an interrupted pending operation."
+msgstr "Speichern für eine unterbrochene ausstehende Operation wiederherstellen."
+
+#: files/usr/local/pkg/dgpd.inc:1388 files/usr/local/pkg/dgpd.inc:1417
+msgid "Revalidate and restore a disabled reservation."
+msgstr "Eine deaktivierte Reservierung erneut prüfen und wiederherstellen."
+
+#: files/usr/local/pkg/dgpd.inc:1391
+msgid "Revalidate and restore the saved DGPD assignment."
+msgstr "Die gespeicherte DGPD-Zuweisung erneut prüfen und wiederherstellen."
+
+#: files/usr/local/pkg/dgpd.inc:775
+#, python-format, php-format
+msgid "Revoked %d active IA_PD lease(s). "
+msgstr "%d aktive IA_PD-Lease(s) widerrufen. "
+
+#: files/usr/local/pkg/dgpd.inc:831
+msgid "SAVED: restoration activation and verification pending"
+msgstr "GESPEICHERT: Aktivierung und Prüfung der Wiederherstellung stehen aus"
+
+#: files/usr/local/pkg/dgpd.inc:1153
+msgid "STALE / disabled"
+msgstr "VERALTET / deaktiviert"
+
+#: files/usr/local/pkg/dgpd.inc:1364 files/usr/local/pkg/dgpd.inc:1415
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: files/usr/local/pkg/dgpd.inc:1213
+msgid "Save Settings restored; pending intent and ownership are retained."
+msgstr "Speichern wiederhergestellt; ausstehende Absicht und Zuständigkeit bleiben erhalten."
+
+#: files/usr/local/pkg/dgpd.inc:818
+msgid "Saved assignment overlaps another DGPD assignment"
+msgstr "Gespeicherte Zuweisung überschneidet sich mit einer anderen DGPD-Zuweisung"
+
+#: files/usr/local/pkg/dgpd.inc:1378
+msgid "Select an eligible Track6 interface with active Kea DHCPv6."
+msgstr "Wählen Sie eine geeignete Track6-Schnittstelle mit aktivem Kea DHCPv6."
+
+#: files/usr/local/pkg/dgpd.inc:1541
+msgid "Showing the first 256 candidates."
+msgstr "Die ersten 256 Kandidaten werden angezeigt."
+
+#: files/usr/local/pkg/dgpd_kea.inc:50
+msgid "Status"
+msgstr "Status"
+
+#: files/usr/local/pkg/dgpd.inc:1423
+msgid "Stop managing the assignment without changing native DHCPv6 settings."
+msgstr "Die Verwaltung der Zuweisung beenden, ohne die nativen DHCPv6-Einstellungen zu ändern."
+
+#: files/usr/local/pkg/dgpd.inc:1090
+msgid "Success"
+msgstr "Erfolg"
+
+#: files/usr/local/pkg/dgpd.inc:1525
+msgid "The current upstream is occupied by these native networks:"
+msgstr "Der aktuelle Upstream wird von diesen nativen Netzen belegt:"
+
+#: files/usr/local/pkg/dgpd.inc:1152
+msgid "The delegated prefix changed. Downstream routers may require DHCPv6-PD renewal or manual reconfiguration."
+msgstr "Das delegierte Präfix wurde geändert. Downstream-Router benötigen möglicherweise eine DHCPv6-PD-Erneuerung oder manuelle Neukonfiguration."
+
+#: files/usr/local/pkg/dgpd.inc:1029
+msgid "The native pfSense DHCPv6 save routine failed; pending state retained"
+msgstr "Die native pfSense-DHCPv6-Speicherroutine ist fehlgeschlagen; ausstehender Zustand bleibt erhalten"
+
+#: files/usr/local/pkg/dgpd.inc:1026
+msgid "The native pfSense DHCPv6 save routine is unavailable"
+msgstr "Die native pfSense-DHCPv6-Speicherroutine ist nicht verfügbar"
+
+#: files/usr/local/pkg/dgpd.inc:733
+msgid "This action will interrupt the downstream network and revoke its active IA_PD lease. Confirm the warning to continue."
+msgstr "Diese Aktion unterbricht das Downstream-Netzwerk und widerruft dessen aktive IA_PD-Lease. Bestätigen Sie die Warnung, um fortzufahren."
+
+#: files/usr/local/pkg/dgpd.inc:1495
+msgid "UNMANAGED"
+msgstr "NICHT VERWALTET"
+
+#: files/usr/local/pkg/dgpd.inc:1512
+msgid "Unavailable"
+msgstr "Nicht verfügbar"
+
+#: files/usr/local/pkg/dgpd.inc:117
+msgid "Unsupported DGPD Kea command"
+msgstr "Nicht unterstützter DGPD-Kea-Befehl"
+
+#: files/usr/local/pkg/dgpd.inc:674
+msgid "Unsupported DGPD action"
+msgstr "Nicht unterstützte DGPD-Aktion"
+
+#: files/usr/local/pkg/dgpd.inc:55
+msgid "Unsupported DGPD state; manual migration required"
+msgstr "Nicht unterstützter DGPD-Zustand; manuelle Migration erforderlich"
+
+#: files/usr/local/pkg/dgpd.inc:109
+msgid "Unsupported Kea control socket path"
+msgstr "Nicht unterstützter Pfad zum Kea-Kontroll-Socket"
+
+#: files/usr/local/pkg/dgpd.inc:393
+msgid "Unsupported Router Advertisement prefix"
+msgstr "Nicht unterstütztes Router-Advertisement-Präfix"
+
+#: files/usr/local/pkg/dgpd.inc:1357
+msgid "Upstream Pool"
+msgstr "Upstream-Pool"
+
+#: files/usr/local/pkg/dgpd.inc:1372
+msgid "Usage"
+msgstr "Verwendung"
+
+#: files/usr/local/pkg/dgpd.inc:1385
+msgid "Validate and stage the assignment. Use Save Settings below to commit it."
+msgstr "Die Zuweisung prüfen und vorbereiten. Verwenden Sie unten Einstellungen speichern, um sie zu übernehmen."
+
+#: files/usr/local/pkg/dgpd.inc:1414
+msgid "Validate and stage the displayed assignment."
+msgstr "Die angezeigte Zuweisung prüfen und vorbereiten."
+
+#: files/usr/local/pkg/dgpd.inc:1089
+msgid "Warning"
+msgstr "Warnung"
+
+#: files/usr/local/pkg/dgpd_kea.inc:40
+msgid "absent"
+msgstr "nicht vorhanden"
+
+#: files/usr/local/pkg/dgpd.inc:100
+msgid "pfSense could not save DGPD configuration"
+msgstr "pfSense konnte die DGPD-Konfiguration nicht speichern"
+
+#: files/usr/local/pkg/dgpd_kea.inc:59
+msgid "pfSense form framework is unavailable"
+msgstr "Das pfSense-Formular-Framework ist nicht verfügbar"
+
+#: files/usr/local/pkg/dgpd_kea.inc:37
+msgid "selected"
+msgstr "ausgewählt"

@@ -1,0 +1,37 @@
+# DynGUA-PD – Build artifacts
+*.pkg
+*.txz
+*.tbz
+*.tgz
+*.tar.gz
+*.tar.xz
+*.tar.zst
+
+# FreeBSD ports / pkg build
+work/
+work-*/
+stage/
+packages/
+distfiles/
+.wrkdir
+*.core
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*~
+*.swp
+*.swo
+
+# Runtime state and logs
+*.log
+*.pid
+*.lock
+dgpd.json
+
+# Local test outputs
+test-results/
+build-output/

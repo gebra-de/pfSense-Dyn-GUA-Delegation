@@ -1,0 +1,5 @@
+#!/bin/sh
+# Copyright 2026 gebra
+# SPDX-License-Identifier: Apache-2.0
+
+/usr/local/bin/php -f /etc/rc.packages %%PORTNAME%% "${2}"

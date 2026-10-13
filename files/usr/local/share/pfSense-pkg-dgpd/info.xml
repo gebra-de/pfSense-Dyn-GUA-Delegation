@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pfsensepkgs>
+	<package>
+		<name>dgpd</name>
+		<descr>Dynamic GUA-PD</descr>
+		<version>%%PKGVERSION%%</version>
+		<configurationfile>dgpd.xml</configurationfile>
+	</package>
+</pfsensepkgs>
