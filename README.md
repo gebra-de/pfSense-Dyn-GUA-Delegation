@@ -192,6 +192,18 @@ The optional read-only Kea page adapter can show active DGPD assignments in the
 native DHCPv6 page. It remains invisible when DynGUA-PD is not installed or no
 active DGPD assignment exists.
 
+## Firewall Rules
+
+DynGUA-PD does not create, modify, or remove firewall rules. A valid IA_PD lease
+and an installed route do not permit traffic by themselves. Administrators must
+review the rules on every affected interface and allow only the intended
+DHCPv6, ICMPv6, and forwarded IPv6 traffic.
+
+After assigning or changing a delegated prefix, verify that the applicable
+rules and aliases cover the current prefix and that no rules still reference an
+obsolete prefix. This is especially important after an upstream renumber or a
+manual replacement of a downstream pool.
+
 ## Prerequisites
 
 - pfSense CE 2.9.0 or a compatible later version
