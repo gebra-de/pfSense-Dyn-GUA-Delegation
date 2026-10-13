@@ -6,7 +6,7 @@ step; the Ports framework validates, stages, and packages the runtime files.
 ## Build Environment
 
 Use an amd64 FreeBSD or pfSense build host that matches the target pfSense
-release. The 0.8.0 Beta RC1 package targets pfSense CE 2.9.0 and FreeBSD 16.
+release. The 0.8.0 Beta RC1a package targets pfSense CE 2.9.0 and FreeBSD 16.
 
 Required components:
 
@@ -72,7 +72,7 @@ make package
 The resulting package is written below `work/pkg/`:
 
 ```text
-work/pkg/pfSense-pkg-dgpd-0.8.0.r1.pkg
+work/pkg/pfSense-pkg-dgpd-0.8.0.r2.pkg
 ```
 
 Minimal pfSense test installations may not contain FreeBSD source headers. If
@@ -95,15 +95,15 @@ system. It does not make packages from a mismatched ports tree compatible.
 ## Inspect the Package
 
 ```sh
-pkg info -F work/pkg/pfSense-pkg-dgpd-0.8.0.r1.pkg
-tar -tf work/pkg/pfSense-pkg-dgpd-0.8.0.r1.pkg
-sha256 work/pkg/pfSense-pkg-dgpd-0.8.0.r1.pkg
+pkg info -F work/pkg/pfSense-pkg-dgpd-0.8.0.r2.pkg
+tar -tf work/pkg/pfSense-pkg-dgpd-0.8.0.r2.pkg
+sha256 work/pkg/pfSense-pkg-dgpd-0.8.0.r2.pkg
 ```
 
 Confirm that the manifest reports:
 
 - Name: `pfSense-pkg-dgpd`
-- Version: `0.8.0.r1`
+- Version: `0.8.0.r2`
 - Origin: `net/pfSense-pkg-dgpd`
 - License: `APACHE20`
 - Maintainer: `projects@gbrands.de`
@@ -114,7 +114,7 @@ Back up the pfSense configuration before installing a pre-release package.
 Install only on an appropriate test system:
 
 ```sh
-pkg add -f work/pkg/pfSense-pkg-dgpd-0.8.0.r1.pkg
+pkg add -f work/pkg/pfSense-pkg-dgpd-0.8.0.r2.pkg
 pkg check -s pfSense-pkg-dgpd
 pkg info pfSense-pkg-dgpd
 ```
@@ -127,4 +127,4 @@ before exercising state-changing actions.
 
 The binary `.pkg` file is distributed as a release asset rather than committed
 to the source branch. Publish its SHA256 checksum with the asset and create the
-release from the signed `beta-rc1` tag.
+release from the signed `beta-rc1a` tag.

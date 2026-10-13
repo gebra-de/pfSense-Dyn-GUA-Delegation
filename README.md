@@ -11,7 +11,7 @@ native Track Interface configuration, Kea DHCPv6, and pfSense lease routing.
 It discovers the delegated upstream prefix, proposes collision-free downstream
 pools, and keeps explicit ownership of the assignments it manages.
 
-> **Project status:** Version 0.8.0 Beta RC1 for pfSense CE 2.9.0. Review the
+> **Project status:** Version 0.8.0 Beta RC1a for pfSense CE 2.9.0. Review the
 > current limitations before using it outside a test environment.
 
 ## Introduction
@@ -133,8 +133,9 @@ must be enabled.
 | **Upstream Pool** | Displays the reconstructed upstream prefix and length. It is read-only. |
 | **PD Pool Prefix** | Contains the downstream pool address without an embedded CIDR length. |
 | **Pool LEN** | Selects the pool length. Kea delegates the complete selected pool to one downstream router. |
-| **Allow Interface Management** | Explicitly authorizes DGPD to manage the selected interface. |
 | **Downstream Impact** | Appears only when an existing delegation will change and requires acknowledgement. |
+| **Allow Interface Management** | Explicitly authorizes DGPD to manage the selected interface. |
+| **Usage** | Opens the native information panel describing every DGPD action. |
 
 ### Actions
 
@@ -199,6 +200,20 @@ and an installed route do not permit traffic by themselves. Administrators must
 review the rules on every affected interface and allow only the intended
 DHCPv6, ICMPv6, and forwarded IPv6 traffic.
 
+DynGUA-PD maintains native network aliases for use in administrator-defined
+rules:
+
+- `DGPD_<INTERFACE>_PD` contains the verified active delegated prefix for one
+  managed interface.
+- `DGPD_ALL_PD` contains every verified active delegated prefix managed by
+  DynGUA-PD.
+
+The aliases may contain prefixes of different lengths. DynGUA-PD changes only
+their contents; it never creates or edits firewall rules. When an assignment is
+disabled or becomes stale, its interface alias remains available but empty. On
+deletion, an alias referenced by a rule or another alias also remains empty so
+existing firewall configuration does not break.
+
 After assigning or changing a delegated prefix, verify that the applicable
 rules and aliases cover the current prefix and that no rules still reference an
 obsolete prefix. This is especially important after an upstream renumber or a
@@ -223,17 +238,17 @@ Missing Router Advertisement data disables only the optional comparison.
 
 DynGUA-PD is not yet available in the official pfSense package repository.
 Download the package and its SHA256 checksum from the release assets for the
-signed `beta-rc1` tag. Verify the checksum before transferring the package to
+signed `beta-rc1a` tag. Verify the checksum before transferring the package to
 the firewall:
 
 ```sh
-sha256 pfSense-pkg-dgpd-0.8.0.r1.pkg
+sha256 pfSense-pkg-dgpd-0.8.0.r2.pkg
 ```
 
 Install the verified package from a pfSense shell:
 
 ```sh
-pkg add -f ./pfSense-pkg-dgpd-0.8.0.r1.pkg
+pkg add -f ./pfSense-pkg-dgpd-0.8.0.r2.pkg
 ```
 
 Back up the pfSense configuration before installing a pre-release build. After
@@ -244,7 +259,7 @@ See [`BUILD.md`](BUILD.md) to validate and build the package from source.
 
 ## Current Limitations
 
-- Version 0.8.0 Beta RC1 is pre-release software and begins public beta
+- Version 0.8.0 Beta RC1a is pre-release software and continues public beta
   qualification.
 - Complete automatic handling of every ISP renumber, WAN failure, reboot, and
   service-reload sequence is still being validated.

@@ -4,7 +4,7 @@
  * Copyright 2026 gebra
  * SPDX-License-Identifier: Apache-2.0
  *
- * Dynamic GUA-PD 0.8.0 Beta RC1 asynchronous native verification worker.
+ * Dynamic GUA-PD 0.8.0 Beta RC1a asynchronous native verification worker.
  * A dedicated process keeps package resync callbacks out of native DHCP locks.
  */
 require_once('/usr/local/pkg/dgpd.inc');
