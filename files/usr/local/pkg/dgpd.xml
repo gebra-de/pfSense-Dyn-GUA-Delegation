@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE packagegui SYSTEM "../schema/packages.dtd">
+<?xml-stylesheet type="text/xsl" href="../xsl/package.xsl"?>
 <packagegui>
+	<copyright><![CDATA[
+/*
+ * Copyright 2026 gebra
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+	]]></copyright>
 	<name>dgpd</name>
 	<version>%%PKGVERSION%%</version>
 	<title>Dynamic GUA-PD</title>
@@ -17,6 +36,7 @@
 	<menu>
 		<name>Dynamic GUA-PD</name>
 		<section>Services</section>
+		<configfile>dgpd.xml</configfile>
 		<url>/pkg_edit.php?xml=dgpd.xml</url>
 	</menu>
 	<fields>
@@ -86,7 +106,7 @@
 			<type>button</type>
 			<buttonclass>btn-info btn-sm</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Copy the displayed allocator proposal into Delegated PD and Delegated Length, replacing your edits. This does not save, reserve a prefix, or change services. Apply checks availability again.</description>
+			<description>Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, replacing current edits. This does not save, reserve a prefix, or change services. Apply checks availability again.</description>
 		</field>
 		<field>
 			<fielddescr>Apply Assignment</fielddescr>
@@ -102,7 +122,7 @@
 			<type>button</type>
 			<buttonclass>btn-success btn-sm</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Save the staged assignment, verify the live Kea pool, and finalize DGPD status.</description>
+			<description>Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status.</description>
 		</field>
 		<field>
 			<fielddescr>Disable</fielddescr>
@@ -159,6 +179,12 @@
 			<buttonclass>btn-info btn-sm</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
 			<description>Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.</description>
+		</field>
+		<field>
+			<fielddescr>Debug Logging</fielddescr>
+			<fieldname>dgpd_debug</fieldname>
+			<type>checkbox</type>
+			<description>Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. Disable this option during normal operation.</description>
 		</field>
 		<field>
 			<fielddescr>Usage</fielddescr>

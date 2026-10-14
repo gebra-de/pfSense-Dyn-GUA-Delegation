@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 PORTNAME=	pfSense-pkg-dgpd
-PORTVERSION=	0.8.0.r2
+PORTVERSION=	0.8.1
+PORTREVISION=	7
 CATEGORIES=	net
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -19,20 +20,35 @@ RUN_DEPENDS=	${LOCALBASE}/bin/socat:net/socat
 NO_BUILD=	yes
 NO_MTREE=	yes
 
-SUB_FILES=	pkg-install pkg-deinstall
-SUB_LIST=	PORTNAME=${PORTNAME}
+BUILD_ID?=	unknown
+SOURCE_COMMIT?=	unknown
+
+SUB_FILES=	pkg-install pkg-deinstall build-info
+SUB_LIST=	PORTNAME=${PORTNAME} \
+		PKGVERSION=${PKGVERSION} \
+		BUILD_ID=${BUILD_ID} \
+		SOURCE_COMMIT=${SOURCE_COMMIT}
 
 do-extract:
 	${MKDIR} ${WRKSRC}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/pkg ${STAGEDIR}${DATADIR} ${STAGEDIR}${PREFIX}/libexec ${STAGEDIR}/cf/conf/kea6-scripts
-	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/dgpd.xml ${STAGEDIR}${PREFIX}/pkg/dgpd.xml
-	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/dgpd.inc ${STAGEDIR}${PREFIX}/pkg/dgpd.inc
-	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/dgpd_kea.inc ${STAGEDIR}${PREFIX}/pkg/dgpd_kea.inc
-	${INSTALL_DATA} ${FILESDIR}${DATADIR}/info.xml ${STAGEDIR}${DATADIR}/info.xml
-	${INSTALL_SCRIPT} ${FILESDIR}${PREFIX}/libexec/dgpd_worker.php ${STAGEDIR}${PREFIX}/libexec/dgpd_worker.php
-	${INSTALL_SCRIPT} ${FILESDIR}/conf/kea6-scripts/kea-pd-allocator.php ${STAGEDIR}/cf/conf/kea6-scripts/kea-pd-allocator.php
-	@${REINPLACE_CMD} -i '' -e 's|%%PKGVERSION%%|${PKGVERSION}|g' ${STAGEDIR}${DATADIR}/info.xml ${STAGEDIR}${PREFIX}/pkg/dgpd.xml
+	${MKDIR} ${STAGEDIR}${PREFIX}/pkg ${STAGEDIR}${DATADIR} \
+		${STAGEDIR}${PREFIX}/libexec ${STAGEDIR}/cf/conf/kea6-scripts
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/dgpd.xml \
+		${STAGEDIR}${PREFIX}/pkg/dgpd.xml
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/dgpd.inc \
+		${STAGEDIR}${PREFIX}/pkg/dgpd.inc
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/dgpd_kea.inc \
+		${STAGEDIR}${PREFIX}/pkg/dgpd_kea.inc
+	${INSTALL_DATA} ${FILESDIR}${DATADIR}/info.xml \
+		${STAGEDIR}${DATADIR}/info.xml
+	${INSTALL_DATA} ${WRKDIR}/build-info ${STAGEDIR}${DATADIR}/build-info
+	${INSTALL_SCRIPT} ${FILESDIR}${PREFIX}/libexec/dgpd_worker.php \
+		${STAGEDIR}${PREFIX}/libexec/dgpd_worker.php
+	${INSTALL_SCRIPT} ${FILESDIR}/conf/kea6-scripts/kea-pd-allocator.php \
+		${STAGEDIR}/cf/conf/kea6-scripts/kea-pd-allocator.php
+	@${REINPLACE_CMD} -i '' -e 's|%%PKGVERSION%%|${PKGVERSION}|g' \
+		${STAGEDIR}${DATADIR}/info.xml ${STAGEDIR}${PREFIX}/pkg/dgpd.xml
 
 .include <bsd.port.mk>

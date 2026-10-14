@@ -35,3 +35,6 @@ dgpd.json
 # Local test outputs
 test-results/
 build-output/
+
+# Local release staging
+release/

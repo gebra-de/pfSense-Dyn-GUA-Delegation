@@ -720,3 +720,30 @@ msgstr ""
 #: files/usr/local/pkg/dgpd_kea.inc:37
 msgid "selected"
 msgstr ""
+
+msgid "Beta Software"
+msgstr ""
+
+msgid "Debug logging disabled."
+msgstr ""
+
+msgid "Debug logging enabled."
+msgstr ""
+
+msgid "Enable Debug Logging"
+msgstr ""
+
+msgid "Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. Disable this option during normal operation."
+msgstr ""
+
+msgid "Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status."
+msgstr ""
+
+msgid "Settings are unchanged."
+msgstr ""
+
+msgid "This version is intended for testing. Review DGPD status and logs after configuration changes. For evaluation and troubleshooting, enable debug logging at the bottom of this page."
+msgstr ""
+
+msgid "pfSense could not save the DGPD logging setting"
+msgstr ""

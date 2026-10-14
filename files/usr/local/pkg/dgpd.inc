@@ -3,7 +3,7 @@
  * Copyright 2026 gebra
  * SPDX-License-Identifier: Apache-2.0
  *
- * Dynamic GUA-PD 0.8.0 Beta RC1a: native pfSense downstream prefix delegation controller.
+ * Dynamic GUA-PD: native pfSense downstream prefix delegation controller.
  * Configuration and service ownership stay with pfSense. This library never
  * patches core files or writes generated daemon configuration. Lease revocation
  * is limited to a confirmed Disable/Delete operation for an owned PD pool.
@@ -16,10 +16,64 @@ require_once('/etc/inc/service-utils.inc');
 require_once('/etc/inc/notices.inc');
 
 const DGPD_STATE = 'installedpackages/dgpd/state';
+const DGPD_SETTINGS = 'installedpackages/dgpd/settings';
 const DGPD_ALLOCATOR = '/conf/kea6-scripts/kea-pd-allocator.php';
 const DGPD_SIGNAL = '/var/run/dgpd-signal.generation';
 const DGPD_ALIAS_ALL = 'DGPD_ALL_PD';
 const DGPD_ALIAS_DESCRIPTION = 'Dynamic downstream prefix managed by DynGUA-PD';
+const DGPD_ALIAS_FORMER_DESCRIPTION = 'Former DynGUA-PD alias; review referenced firewall rules';
+
+function dgpd_debug_enabled(): bool {
+	return config_get_path(DGPD_SETTINGS . '/debug', '') === 'on';
+}
+
+function dgpd_syslog_write(int $priority, string $message): void {
+	openlog('dgpd', LOG_PID, LOG_DAEMON);
+	syslog($priority, $message);
+	closelog();
+}
+
+function dgpd_cleanup_legacy_log(): void {
+	@unlink('/var/log/dgpd-reconcile.log');
+}
+
+/* Use the native package syslog registration; never log raw control payloads. */
+function dgpd_log(string $level, string $message, array $context = []): void {
+	$priorities = [
+		'debug' => LOG_DEBUG,
+		'info' => LOG_INFO,
+		'notice' => LOG_NOTICE,
+		'warning' => LOG_WARNING,
+		'error' => LOG_ERR,
+	];
+	if (!isset($priorities[$level]) || ($level === 'debug' && !dgpd_debug_enabled())) {
+		return;
+	}
+	$details = [];
+	foreach ($context as $name => $value) {
+		if (is_scalar($value) || $value === null) {
+			$details[(string)$name] = $value;
+		}
+	}
+	if ($details) {
+		$message .= ' ' . json_encode($details, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+	}
+	dgpd_syslog_write($priorities[$level], $message);
+}
+
+function dgpd_save_logging_setting(): bool {
+	$enabled = isset($_POST['dgpd_debug']);
+	if ($enabled === dgpd_debug_enabled()) {
+		return false;
+	}
+	config_set_path(DGPD_SETTINGS . '/debug', $enabled ? 'on' : 'off');
+	$result = write_config('DGPD: update debug logging setting');
+	if ($result === false || $result === -1) {
+		throw new RuntimeException(gettext('pfSense could not save the DGPD logging setting'));
+	}
+	dgpd_log('notice', $enabled ? 'Debug logging enabled' : 'Debug logging disabled');
+	return true;
+}
 
 /* Return a canonical IPv6 network using the native pfSense implementation. */
 function dgpd_network(string $address, int $length): string {
@@ -144,9 +198,18 @@ function dgpd_sync_alias_config(array $state): bool {
 		$owned = str_starts_with((string)($alias['descr'] ?? ''), DGPD_ALIAS_DESCRIPTION) &&
 			in_array('automanaged', get_tags_from_alias_item($alias), true);
 		if (isset($desired[$name])) {
-			if (!$owned) {
+			$reclaimable = (string)($alias['descr'] ?? '') === DGPD_ALIAS_FORMER_DESCRIPTION &&
+				str_starts_with($name, 'DGPD_') && str_ends_with($name, '_PD');
+			if (!$owned && !$reclaimable) {
 				throw new RuntimeException(sprintf(gettext('Firewall alias %s already exists and is not owned by DGPD'), $name));
 			}
+			$prefixes = $desired[$name];
+			$result[] = ['name' => $name, 'type' => 'network',
+				'address' => implode(' ', $prefixes),
+				'descr' => DGPD_ALIAS_DESCRIPTION . ($name === DGPD_ALIAS_ALL ? ' (all interfaces)' : ''),
+				'detail' => implode('||', array_fill(0, count($prefixes), 'Verified delegated prefix')),
+				'tags' => 'automanaged'];
+			unset($desired[$name]);
 			continue;
 		}
 		if ($owned && str_starts_with($name, 'DGPD_') && str_ends_with($name, '_PD')) {
@@ -181,6 +244,7 @@ function dgpd_save(array $state, string $reason): void {
 	if ($result === false || $result === -1) {
 		throw new RuntimeException(gettext('pfSense could not save DGPD configuration'));
 	}
+	dgpd_log('info', 'State saved', ['reason' => $reason]);
 	if ($aliases_changed) {
 		alias_make_table();
 		filter_configure();
@@ -292,11 +356,11 @@ function dgpd_prerequisites(): array {
 	$socket_ready = false;
 	$leases_ready = false;
 	$routing_ready = false;
-	try {
-		$socket = dgpd_socket();
-		$socket_ready = @filetype($socket) === 'socket';
-		if ($socket_ready) {
+	$socket = dgpd_socket();
+	if (@filetype($socket) === 'socket') {
+		try {
 			$live = dgpd_live();
+			$socket_ready = true;
 			foreach ($live['hooks-libraries'] ?? [] as $hook) {
 				if (($hook['parameters']['name'] ?? '') === '/usr/local/share/kea/scripts/kea_run6' &&
 				    is_executable('/usr/local/bin/kea2fib6') &&
@@ -304,14 +368,20 @@ function dgpd_prerequisites(): array {
 					$routing_ready = true;
 				}
 			}
-			$commands = dgpd_command('list-commands');
-			$leases_ready = $commands['result'] === 0 &&
-				is_array($commands['arguments'] ?? null) &&
-				in_array('lease6-get-all', $commands['arguments'], true) &&
-				in_array('lease6-del', $commands['arguments'], true);
+		} catch (Throwable $error) {
+			$socket_ready = false;
 		}
-	} catch (Throwable $error) {
-		$socket_ready = false;
+		if ($socket_ready) {
+			try {
+				$commands = dgpd_command('list-commands');
+				$leases_ready = $commands['result'] === 0 &&
+					is_array($commands['arguments'] ?? null) &&
+					in_array('lease6-get-all', $commands['arguments'], true) &&
+					in_array('lease6-del', $commands['arguments'], true);
+			} catch (Throwable $error) {
+				$leases_ready = false;
+			}
+		}
 	}
 	$checks[] = ['name' => 'Kea control socket', 'ready' => $socket_ready,
 		'required' => true, 'message' => $socket_ready ? 'Available' :
@@ -329,9 +399,38 @@ function dgpd_prerequisites(): array {
 	return $checks;
 }
 
-function dgpd_require_ready(): void {
+function dgpd_retry_pause(): void {
+	usleep(500000);
+}
+
+/* Require a stable Kea control plane after the native reload returns. */
+function dgpd_wait_prerequisites(bool $after_reload = false): array {
+	$attempts = $after_reload ? 10 : 1;
+	$consecutive = 0;
+	$checks = [];
+	for ($attempt = 0; $attempt < $attempts; $attempt++) {
+		$checks = dgpd_prerequisites();
+		$ready = true;
+		foreach ($checks as $check) {
+			if ($check['required'] && !$check['ready']) {
+				$ready = false;
+				break;
+			}
+		}
+		$consecutive = $ready ? $consecutive + 1 : 0;
+		if ($ready && (!$after_reload || $consecutive >= 2)) {
+			return $checks;
+		}
+		if ($attempt + 1 < $attempts) {
+			dgpd_retry_pause();
+		}
+	}
+	return $checks;
+}
+
+function dgpd_require_ready(bool $after_reload = false): void {
 	$errors = [];
-	foreach (dgpd_prerequisites() as $check) {
+	foreach (dgpd_wait_prerequisites($after_reload) as $check) {
 		if ($check['required'] && !$check['ready']) {
 			$errors[] = $check['message'];
 		}
@@ -413,7 +512,11 @@ function dgpd_allocator(string $interface, bool $proposal = false): array {
 		' ' . escapeshellarg('--socket=' . dgpd_socket()) .
 		($proposal ? ' --json' : ' --inspect-json');
 	exec($command . ' 2>&1', $output, $status);
-	return dgpd_allocator_report(implode("\n", $output), $status, $interface);
+	$report = dgpd_allocator_report(implode("\n", $output), $status, $interface);
+	dgpd_log('debug', 'Allocator report accepted',
+		['interface' => $interface, 'mode' => $proposal ? 'proposal' : 'inspection',
+		'status' => $status, 'blocks' => count($report['blocks'] ?? [])]);
+	return $report;
 }
 
 /* A valid inspection remains useful when the allocator reports no free proposal. */
@@ -516,8 +619,12 @@ function dgpd_sources(string $interface, array $report): array {
 		$advertised = dgpd_ra_prefixes(file_get_contents('/var/etc/radvd.conf'),
 			$report['targets'][$interface]['physical']);
 	}
-	return ['wan' => $wan, 'upstream' => $upstream,
-		'comparison' => dgpd_compare_ra($upstream, $advertised)];
+	$comparison = dgpd_compare_ra($upstream, $advertised);
+	dgpd_log('debug', 'Prefix sources evaluated',
+		['interface' => $interface, 'wan' => $wan,
+		'upstream' => $upstream['prefix'] . '/' . $upstream['prefix_len'],
+		'ra_prefixes' => count($advertised), 'comparison' => $comparison]);
+	return ['wan' => $wan, 'upstream' => $upstream, 'comparison' => $comparison];
 }
 
 /* Validate manually entered assignments against current allocator evidence. */
@@ -676,6 +783,10 @@ function dgpd_accept_native(string $interface, bool $automatic = false): string 
 	try {
 		config_read_file(false, false);
 		$state = dgpd_state();
+		dgpd_log('debug', 'Reconciliation started',
+			['preflight' => $preflight, 'after_reload' => $after_reload,
+			'assignments' => count($state['assignments']),
+			'pending' => $state['pending']['action'] ?? 'none']);
 		if (isset($state['pending'])) {
 			throw new RuntimeException(gettext('A native apply is pending'));
 		}
@@ -1052,7 +1163,7 @@ function dgpd_wait_live(bool $after_reload): array {
 }
 
 /* The worker verifies only after the native pfSense DHCPv6 save routine completes. */
-function dgpd_reconcile(bool $preflight = false): string {
+function dgpd_reconcile(bool $preflight = false, bool $after_reload = false): string {
 	$lock = lock('dgpd', LOCK_EX | LOCK_NB);
 	if (!$lock) {
 		throw new RuntimeException(gettext('DGPD is busy; pending operation retained'));
@@ -1063,7 +1174,7 @@ function dgpd_reconcile(bool $preflight = false): string {
 		if (!$state['assignments'] && !isset($state['pending'])) {
 			return 'UNASSIGNED';
 		}
-		dgpd_require_ready();
+		dgpd_require_ready($after_reload);
 		$pending = $state['pending'] ?? null;
 		if ($pending !== null && is_subsystem_dirty('dhcpd6') && !$preflight) {
 			return 'PENDING: activation required';
@@ -1094,7 +1205,7 @@ function dgpd_reconcile(bool $preflight = false): string {
 		if ($preflight) {
 			return 'READY';
 		}
-		$live = dgpd_wait_live(false);
+		$live = dgpd_wait_live($after_reload);
 		foreach ($state['assignments'] as $interface => $assignment) {
 			$enabling = ($pending['interface'] ?? '') === $interface &&
 				in_array($pending['action'] ?? '', ['enable', 'restore'], true);
@@ -1227,7 +1338,7 @@ function dgpd_native_apply(): string {
 	if (dhcp6_apply_changes() !== 0) {
 		throw new RuntimeException(gettext('The native pfSense DHCPv6 save routine failed; pending state retained'));
 	}
-	return dgpd_reconcile();
+	return dgpd_reconcile(false, true);
 }
 
 /* A single generation file doubles as the signal lock; no separate JSON state. */
@@ -1259,6 +1370,7 @@ function dgpd_request_reconcile(): void {
 
 /* Installation is observational: unavailable prerequisites never start services. */
 function dgpd_package_initialize(): void {
+	dgpd_cleanup_legacy_log();
 	$raw = config_get_path(DGPD_STATE, []);
 	$state = dgpd_state();
 	$migrate = is_array($raw) && in_array((string)($raw['schema'] ?? '5'), ['3', '4'], true);
@@ -1274,9 +1386,11 @@ function dgpd_package_initialize(): void {
 	}
 	foreach (dgpd_prerequisites() as $check) {
 		if (!$check['ready']) {
-			error_log('DGPD initialization: ' . $check['message']);
+			dgpd_log('warning', 'Initialization prerequisite unavailable',
+				['prerequisite' => $check['name'], 'message' => $check['message']]);
 		}
 	}
+	dgpd_log('notice', 'Package initialized');
 }
 
 function dgpd_package_deinstall(): void {
@@ -1295,7 +1409,7 @@ function dgpd_package_deinstall(): void {
 		$changed = true;
 		if (is_alias_inuse($name)) {
 			unset($alias['tags']);
-			$alias['descr'] = gettext('Former DynGUA-PD alias; review referenced firewall rules');
+			$alias['descr'] = DGPD_ALIAS_FORMER_DESCRIPTION;
 			$result[] = $alias;
 		}
 	}
@@ -1315,7 +1429,7 @@ function dgpd_package_resync_signal(): void {
 			dgpd_request_reconcile();
 		}
 	} catch (Throwable $error) {
-		error_log('DGPD resync: ' . $error->getMessage());
+		dgpd_log('error', 'Package resynchronization failed', ['message' => $error->getMessage()]);
 	}
 }
 
@@ -1380,6 +1494,8 @@ function dgpd_gui_prepare(): void {
 
 /* Called after the native page header; all dynamic text has already been escaped. */
 function dgpd_gui_feedback(): void {
+	echo '<div class="alert alert-warning"><strong>' . gettext('Beta Software') .
+		'</strong><br />' . gettext('This version is intended for testing. Review DGPD status and logs after configuration changes. For evaluation and troubleshooting, enable debug logging at the bottom of this page.') . '</div>';
 	echo $GLOBALS['dgpd_gui_feedback'] ?? '';
 	if (isset($_GET['dgpd_result']) && is_string($_GET['dgpd_result'])) {
 		$level = is_string($_GET['dgpd_level'] ?? null) ? $_GET['dgpd_level'] : 'info';
@@ -1403,9 +1519,12 @@ function dgpd_gui_feedback(): void {
 
 function dgpd_gui_before_form(): void {
 	$interface = '';
+	$after_native_apply = false;
 	try {
 		if (isset($_POST['apply'])) {
-			dgpd_gui_result(dgpd_native_apply());
+			$result = dgpd_native_apply();
+			$after_native_apply = true;
+			dgpd_gui_result($result);
 		}
 		$action = '';
 		foreach (['propose' => 'Propose', 'apply' => 'Apply Assignment',
@@ -1438,10 +1557,17 @@ function dgpd_gui_before_form(): void {
 			}
 		} elseif ($action === 'Save Settings') {
 			$state = dgpd_state();
-			if (!isset($state['pending'])) {
-				throw new RuntimeException(gettext('No pending DGPD operation to apply'));
+			$logging_changed = dgpd_save_logging_setting();
+			if (isset($state['pending'])) {
+				$result = dgpd_native_apply();
+				$after_native_apply = true;
+				dgpd_gui_result($result);
+			} elseif ($logging_changed) {
+				dgpd_gui_result(dgpd_debug_enabled() ?
+					gettext('Debug logging enabled.') : gettext('Debug logging disabled.'));
+			} else {
+				dgpd_gui_result(gettext('Settings are unchanged.'));
 			}
-			dgpd_gui_result(dgpd_native_apply());
 		} elseif ($action === 'Acknowledge') {
 			$state = dgpd_state();
 			if (isset($state['notice'])) {
@@ -1496,7 +1622,7 @@ function dgpd_gui_before_form(): void {
 	} catch (Throwable $error) {
 		dgpd_notice($error->getMessage(), true);
 	}
-	foreach (dgpd_prerequisites() as $check) {
+	foreach (dgpd_wait_prerequisites($after_native_apply) as $check) {
 		if (!$check['ready']) {
 			dgpd_notice($check['name'] . ': ' . $check['message'], true);
 		}
@@ -1505,7 +1631,7 @@ function dgpd_gui_before_form(): void {
 		$state = dgpd_state();
 		dgpd_close_orphan_ownership_notices($state);
 		dgpd_validate_custom_json();
-		$live = dgpd_live();
+		$live = $after_native_apply ? dgpd_wait_live(true) : dgpd_live();
 		$models = [];
 		foreach (config_get_path('dhcpdv6', []) as $name => $settings) {
 			if (!is_string($name) || !preg_match('/^[a-z][a-z0-9_]*$/D', $name) ||
@@ -1618,6 +1744,7 @@ function dgpd_gui_localize_fields(array $fields): array {
 		'dgpd_action_restore_assignment' => gettext('Restore DGPD Assignment'),
 		'dgpd_action_accept_native' => gettext('Accept Native Change'),
 		'dgpd_action_release_ownership' => gettext('Release Ownership'),
+		'dgpd_debug' => gettext('Enable Debug Logging'),
 		'dgpd_usage' => gettext('Usage'),
 	];
 	$descriptions = [
@@ -1630,9 +1757,9 @@ function dgpd_gui_localize_fields(array $fields): array {
 		'dgpd_prefix_len' => gettext('Prefix length of the complete Kea PD pool. Kea delegates this complete prefix to one downstream router.'),
 		'dgpd_downstream_confirm' => gettext('I understand that changing an existing delegated prefix may require DHCPv6-PD renewal or manual reconfiguration on downstream routers.'),
 		'dgpd_manage' => gettext('Explicitly authorize DGPD to manage this interface. Existing native PD assignments remain protected.'),
-		'dgpd_action_propose' => gettext('Copy the displayed allocator proposal into Delegated PD and Delegated Length, replacing your edits. This does not save, reserve a prefix, or change services. Apply checks availability again.'),
+		'dgpd_action_propose' => gettext('Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, replacing current edits. This does not save, reserve a prefix, or change services. Apply checks availability again.'),
 		'dgpd_action_apply' => gettext('Validate and stage the assignment. Use Save Settings below to commit it.'),
-		'dgpd_action_native_apply' => gettext('Save the staged assignment, verify the live Kea pool, and finalize DGPD status.'),
+		'dgpd_action_native_apply' => gettext('Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status.'),
 		'dgpd_action_disable' => gettext('Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease is revoked only after a downstream-interruption warning is confirmed.'),
 		'dgpd_action_enable' => gettext('Revalidate and restore a disabled reservation.'),
 		'dgpd_action_delete' => gettext('Remove the native PD pool and release the DGPD reservation. Warning: Active IA_PD leases in this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may require renewal or manual reconfiguration.'),
@@ -1640,6 +1767,7 @@ function dgpd_gui_localize_fields(array $fields): array {
 		'dgpd_action_restore_assignment' => gettext('Revalidate and restore the saved DGPD assignment.'),
 		'dgpd_action_accept_native' => gettext('Accept a fully validated, upstream-contained and collision-free native Kea PD change as the new DGPD assignment.'),
 		'dgpd_action_release_ownership' => gettext('Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.'),
+		'dgpd_debug' => gettext('Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. Disable this option during normal operation.'),
 	];
 	foreach ($fields as &$field) {
 		$name = $field['fieldname'] ?? '';
@@ -1738,6 +1866,9 @@ function dgpd_gui_fields(array $models, string $selected, bool $propose): void {
 		if ($name === 'dgpd_proposals') {
 			$field['description'] = '<div class="panel panel-default"><div class="panel-body" id="dgpd-proposals">' .
 				dgpd_gui_proposals($model) . '</div></div>';
+		}
+		if ($name === 'dgpd_debug') {
+			$field['default_value'] = dgpd_debug_enabled() ? 'on' : '';
 		}
 		$pkg['fields']['field'][$index] = $field;
 	}
@@ -1875,7 +2006,7 @@ echo <<<'DGPD_JS'
 		poolLength.value = current ? current.prefix_len : (pool ? pool['prefix-len'] : '');
 		const ownershipConflict = model && (model.conflict || model.adoptable);
 		apply.disabled = !model || model.pending || ownershipConflict || !prefix.value;
-		nativeApply.disabled = !model || !model.pending;
+		nativeApply.disabled = false;
 		const status = model && model.current ? (model.current.status || 'active') : '';
 		disable.disabled = !model || model.pending || ownershipConflict || status !== 'active';
 		enable.disabled = !model || model.pending || ownershipConflict || status !== 'disabled';

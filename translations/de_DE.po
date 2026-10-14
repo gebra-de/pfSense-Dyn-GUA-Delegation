@@ -683,3 +683,30 @@ msgstr "Das pfSense-Formular-Framework ist nicht verfügbar"
 #: files/usr/local/pkg/dgpd_kea.inc:37
 msgid "selected"
 msgstr "ausgewählt"
+
+msgid "Beta Software"
+msgstr "Beta-Software"
+
+msgid "Debug logging disabled."
+msgstr "Debug-Protokollierung deaktiviert."
+
+msgid "Debug logging enabled."
+msgstr "Debug-Protokollierung aktiviert."
+
+msgid "Enable Debug Logging"
+msgstr "Debug-Protokollierung aktivieren"
+
+msgid "Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. Disable this option during normal operation."
+msgstr "Detaillierte Entscheidungen zu Allocator, Präfixquellen, Abgleich, Kea-Prüfung und Wiederholungsversuchen protokollieren. Deaktivieren Sie diese Option im normalen Betrieb."
+
+msgid "Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status."
+msgstr "Die Protokollierungseinstellung speichern und bei einer ausstehenden Zuweisung den aktiven Kea-Pool prüfen sowie den DGPD-Status abschließen."
+
+msgid "Settings are unchanged."
+msgstr "Die Einstellungen sind unverändert."
+
+msgid "This version is intended for testing. Review DGPD status and logs after configuration changes. For evaluation and troubleshooting, enable debug logging at the bottom of this page."
+msgstr "Diese Version ist für Tests vorgesehen. Prüfen Sie nach Konfigurationsänderungen den DGPD-Status und die Protokolle. Aktivieren Sie für die Auswertung und Fehleranalyse die Debug-Protokollierung am Ende dieser Seite."
+
+msgid "pfSense could not save the DGPD logging setting"
+msgstr "pfSense konnte die DGPD-Protokollierungseinstellung nicht speichern"

@@ -11,7 +11,7 @@ native Track Interface configuration, Kea DHCPv6, and pfSense lease routing.
 It discovers the delegated upstream prefix, proposes collision-free downstream
 pools, and keeps explicit ownership of the assignments it manages.
 
-> **Project status:** Version 0.8.0 Beta RC1a for pfSense CE 2.9.0. Review the
+> **Project status:** Version 0.8.1_7 Beta RC2 for pfSense CE 2.9.0. Review the
 > current limitations before using it outside a test environment.
 
 ## Introduction
@@ -193,6 +193,17 @@ The optional read-only Kea page adapter can show active DGPD assignments in the
 native DHCPv6 page. It remains invisible when DynGUA-PD is not installed or no
 active DGPD assignment exists.
 
+## Diagnostics and Build Identity
+
+DGPD writes operational messages to the native pfSense package log at
+`/var/log/dgpd.log`. Normal logging remains active. The optional **Enable Debug
+Logging** setting adds detailed diagnostics for evaluation and bug reports and
+should be disabled during ordinary use.
+
+The WebUI and installed `build-info` file identify the package version, build
+timestamp, and source commit. This allows a report to identify the exact beta
+build without changing pfSense's package-version rules.
+
 ## Firewall Rules
 
 DynGUA-PD does not create, modify, or remove firewall rules. A valid IA_PD lease
@@ -238,17 +249,17 @@ Missing Router Advertisement data disables only the optional comparison.
 
 DynGUA-PD is not yet available in the official pfSense package repository.
 Download the package and its SHA256 checksum from the release assets for the
-signed `beta-rc1a` tag. Verify the checksum before transferring the package to
+signed `beta-rc2` tag. Verify the checksum before transferring the package to
 the firewall:
 
 ```sh
-sha256 pfSense-pkg-dgpd-0.8.0.r2.pkg
+sha256 pfSense-pkg-dgpd-0.8.1_7.pkg
 ```
 
 Install the verified package from a pfSense shell:
 
 ```sh
-pkg add -f ./pfSense-pkg-dgpd-0.8.0.r2.pkg
+pkg add -f ./pfSense-pkg-dgpd-0.8.1_7.pkg
 ```
 
 Back up the pfSense configuration before installing a pre-release build. After
@@ -259,7 +270,7 @@ See [`BUILD.md`](BUILD.md) to validate and build the package from source.
 
 ## Current Limitations
 
-- Version 0.8.0 Beta RC1a is pre-release software and continues public beta
+- Version 0.8.1_7 Beta RC2 is pre-release software and continues public beta
   qualification.
 - Complete automatic handling of every ISP renumber, WAN failure, reboot, and
   service-reload sequence is still being validated.

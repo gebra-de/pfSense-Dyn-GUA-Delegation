@@ -2,4 +2,8 @@
 # Copyright 2026 gebra
 # SPDX-License-Identifier: Apache-2.0
 
-/usr/local/bin/php -f /etc/rc.packages %%PORTNAME%% "${2}"
+if [ -n "${PKG_UPGRADE}" ]; then
+	exit 0
+fi
+
+/usr/local/bin/php -f /etc/rc.packages %%PORTNAME%% ${2}
