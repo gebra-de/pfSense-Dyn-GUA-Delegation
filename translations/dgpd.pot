@@ -140,9 +140,9 @@ msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:1384
 msgid ""
-"Copy the displayed allocator proposal into Delegated PD and Delegated "
-"Length, replacing your edits. This does not save, reserve a prefix, or "
-"change services. Apply checks availability again."
+"Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, "
+"replacing current edits. This does not save or reserve a prefix and does "
+"not change services. Apply Assignment checks availability again."
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:1355
@@ -222,7 +222,7 @@ msgid "Enable DHCPv6 on the selected interface"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:122
-msgid "Enable Kea DHCPv6: The control socket is unavailable"
+msgid "Enable Kea DHCPv6: The DHCPv6 UNIX control socket is unavailable"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:618
@@ -572,7 +572,7 @@ msgid "Requested transition does not match the assignment status"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:1369 files/usr/local/pkg/dgpd.inc:1421
-msgid "Restore DGPD Assignment"
+msgid "Restore Assignment"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:1419
@@ -677,7 +677,7 @@ msgid "Unsupported DGPD state; manual migration required"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:109
-msgid "Unsupported Kea control socket path"
+msgid "Unsupported Kea DHCPv6 UNIX control socket path"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:393
@@ -693,8 +693,7 @@ msgid "Usage"
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:1385
-msgid ""
-"Validate and stage the assignment. Use Save Settings below to commit it."
+msgid "Validate and stage the assignment. Use Save Settings to commit it."
 msgstr ""
 
 #: files/usr/local/pkg/dgpd.inc:1414
@@ -746,4 +745,13 @@ msgid "This version is intended for testing. Review DGPD status and logs after c
 msgstr ""
 
 msgid "pfSense could not save the DGPD logging setting"
+msgstr ""
+
+msgid "Assignment Workflow"
+msgstr ""
+
+msgid "Assignment State"
+msgstr ""
+
+msgid "Conflict Resolution"
 msgstr ""

@@ -6,4 +6,4 @@ if [ -n "${PKG_UPGRADE}" ]; then
 	exit 0
 fi
 
-/usr/local/bin/php -f /etc/rc.packages %%PORTNAME%% ${2}
+%%PREFIX%%/bin/php -f /etc/rc.packages %%PORTNAME%% ${2}

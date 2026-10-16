@@ -131,8 +131,8 @@ msgid "Copy a free, unreserved candidate into the editor without saving it."
 msgstr "Einen freien, nicht reservierten Kandidaten in den Editor kopieren, ohne ihn zu speichern."
 
 #: files/usr/local/pkg/dgpd.inc:1384
-msgid "Copy the displayed allocator proposal into Delegated PD and Delegated Length, replacing your edits. This does not save, reserve a prefix, or change services. Apply checks availability again."
-msgstr "Den angezeigten Allocator-Vorschlag in Delegiertes PD und Delegierte Länge kopieren und vorhandene Eingaben ersetzen. Dadurch wird nichts gespeichert, kein Präfix reserviert und kein Dienst geändert. Beim Anwenden wird die Verfügbarkeit erneut geprüft."
+msgid "Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, replacing current edits. This does not save or reserve a prefix and does not change services. Apply Assignment checks availability again."
+msgstr "Den angezeigten Allocator-Vorschlag in PD-Pool-Präfix und Pool-Länge kopieren und aktuelle Eingaben ersetzen. Dadurch wird kein Präfix gespeichert oder reserviert und kein Dienst geändert. Zuweisung anwenden prüft die Verfügbarkeit erneut."
 
 #: files/usr/local/pkg/dgpd.inc:1355
 msgid "Current Assignment"
@@ -208,8 +208,8 @@ msgid "Enable DHCPv6 on the selected interface"
 msgstr "Aktivieren Sie DHCPv6 auf der ausgewählten Schnittstelle"
 
 #: files/usr/local/pkg/dgpd.inc:122
-msgid "Enable Kea DHCPv6: The control socket is unavailable"
-msgstr "Aktivieren Sie Kea DHCPv6: Der Kontroll-Socket ist nicht verfügbar"
+msgid "Enable Kea DHCPv6: The DHCPv6 UNIX control socket is unavailable"
+msgstr "Aktivieren Sie Kea DHCPv6: Der DHCPv6-UNIX-Control-Socket ist nicht verfügbar"
 
 #: files/usr/local/pkg/dgpd.inc:618
 msgid "Enable Kea lease commands: Safe lease verification failed"
@@ -540,8 +540,8 @@ msgid "Requested transition does not match the assignment status"
 msgstr "Der angeforderte Übergang entspricht nicht dem Zuweisungsstatus"
 
 #: files/usr/local/pkg/dgpd.inc:1369 files/usr/local/pkg/dgpd.inc:1421
-msgid "Restore DGPD Assignment"
-msgstr "DGPD-Zuweisung wiederherstellen"
+msgid "Restore Assignment"
+msgstr "Zuweisung wiederherstellen"
 
 #: files/usr/local/pkg/dgpd.inc:1419
 msgid "Restore Save Settings for an interrupted pending operation."
@@ -641,8 +641,8 @@ msgid "Unsupported DGPD state; manual migration required"
 msgstr "Nicht unterstützter DGPD-Zustand; manuelle Migration erforderlich"
 
 #: files/usr/local/pkg/dgpd.inc:109
-msgid "Unsupported Kea control socket path"
-msgstr "Nicht unterstützter Pfad zum Kea-Kontroll-Socket"
+msgid "Unsupported Kea DHCPv6 UNIX control socket path"
+msgstr "Nicht unterstützter Pfad zum Kea-DHCPv6-UNIX-Control-Socket"
 
 #: files/usr/local/pkg/dgpd.inc:393
 msgid "Unsupported Router Advertisement prefix"
@@ -657,8 +657,8 @@ msgid "Usage"
 msgstr "Verwendung"
 
 #: files/usr/local/pkg/dgpd.inc:1385
-msgid "Validate and stage the assignment. Use Save Settings below to commit it."
-msgstr "Die Zuweisung prüfen und vorbereiten. Verwenden Sie unten Einstellungen speichern, um sie zu übernehmen."
+msgid "Validate and stage the assignment. Use Save Settings to commit it."
+msgstr "Die Zuweisung prüfen und vorbereiten. Verwenden Sie Einstellungen speichern, um sie zu übernehmen."
 
 #: files/usr/local/pkg/dgpd.inc:1414
 msgid "Validate and stage the displayed assignment."
@@ -710,3 +710,12 @@ msgstr "Diese Version ist für Tests vorgesehen. Prüfen Sie nach Konfigurations
 
 msgid "pfSense could not save the DGPD logging setting"
 msgstr "pfSense konnte die DGPD-Protokollierungseinstellung nicht speichern"
+
+msgid "Assignment Workflow"
+msgstr "Zuweisungsablauf"
+
+msgid "Assignment State"
+msgstr "Zuweisungsstatus"
+
+msgid "Conflict Resolution"
+msgstr "Konfliktbehebung"

@@ -88,7 +88,7 @@ function guas(string $device): array {
 
 function kea_config(string $socket): array {
 	if (!is_socket_path($socket)) {
-		fail("Kea control socket not found: {$socket}");
+		fail("Kea DHCPv6 UNIX control socket not found: {$socket}");
 	}
 	$request = escapeshellarg('{"command":"config-get","service":["dhcp6"]}');
 	$command = "/usr/bin/printf '%s\\n' {$request} | /usr/local/bin/socat -T 5 - UNIX-CONNECT:" .

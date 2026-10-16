@@ -11,7 +11,7 @@ native Track Interface configuration, Kea DHCPv6, and pfSense lease routing.
 It discovers the delegated upstream prefix, proposes collision-free downstream
 pools, and keeps explicit ownership of the assignments it manages.
 
-> **Project status:** Version 0.8.1_7 Beta RC2 for pfSense CE 2.9.0. Review the
+> **Project status:** Version 0.8.1_9 Beta RC3 for pfSense CE 2.9.0. Review the
 > current limitations before using it outside a test environment.
 
 ## Introduction
@@ -118,6 +118,18 @@ complete IA_PD by itself.
 
 Open **Services > Dynamic GUA-PD**.
 
+Beta RC3 organizes the action controls into three workflow rows:
+
+- **Assignment Workflow** contains proposal, staging, and native save actions.
+- **Assignment State** contains Enable, Disable, and Delete.
+- **Conflict Resolution** contains recovery and ownership decisions.
+
+Buttons use consistent widths and native pfSense colors and icons. Concise help
+appears directly below each action so its immediate effect is visible without
+opening another panel. The expandable **Usage** information contains the full
+operational details, safety implications, and distinction between staging and
+saving.
+
 The interface selector lists only enabled Track Interface targets with active
 Kea DHCPv6 and one usable live Kea subnet. Interfaces that do not qualify are
 not displayed. If no target qualifies, the page explains which native settings
@@ -149,7 +161,7 @@ must be enabled.
 | **Delete** | Removes the native pool and releases the DGPD reservation after verification. |
 | **Recover** | Restores the pending native save operation after the cause of an interruption has been corrected. |
 | **Acknowledge Notice** | Confirms that a persistent downstream-impact warning has been reviewed. |
-| **Restore DGPD Assignment** | Replaces an external native change with the last saved DGPD assignment. |
+| **Restore Assignment** | Replaces an external native change with the last saved DGPD assignment. |
 | **Accept Native Change** | Adopts a complete, upstream-contained, aligned, and collision-free native assignment. |
 | **Release Ownership** | Stops DGPD management without changing the current native DHCPv6 configuration. |
 
@@ -236,7 +248,7 @@ manual replacement of a downstream pool.
 - Native Kea DHCPv6 enabled and running
 - A WAN DHCPv6 client receiving an IA_PD
 - At least one enabled Track Interface with Kea DHCPv6
-- Reachable Kea control socket
+- Reachable Kea DHCPv6 UNIX control socket
 - Kea Lease Commands support for safe lease inspection and revocation
 - Native `pfSense-system` `kea2fib6` integration
 - `socat`, installed as a package dependency
@@ -249,17 +261,17 @@ Missing Router Advertisement data disables only the optional comparison.
 
 DynGUA-PD is not yet available in the official pfSense package repository.
 Download the package and its SHA256 checksum from the release assets for the
-signed `beta-rc2` tag. Verify the checksum before transferring the package to
+signed `beta-rc3` tag. Verify the checksum before transferring the package to
 the firewall:
 
 ```sh
-sha256 pfSense-pkg-dgpd-0.8.1_7.pkg
+sha256 pfSense-pkg-dgpd-0.8.1_9.pkg
 ```
 
 Install the verified package from a pfSense shell:
 
 ```sh
-pkg add -f ./pfSense-pkg-dgpd-0.8.1_7.pkg
+pkg add -f ./pfSense-pkg-dgpd-0.8.1_9.pkg
 ```
 
 Back up the pfSense configuration before installing a pre-release build. After
@@ -270,7 +282,7 @@ See [`BUILD.md`](BUILD.md) to validate and build the package from source.
 
 ## Current Limitations
 
-- Version 0.8.1_7 Beta RC2 is pre-release software and continues public beta
+- Version 0.8.1_9 Beta RC3 is pre-release software and continues public beta
   qualification.
 - Complete automatic handling of every ISP renumber, WAN failure, reboot, and
   service-reload sequence is still being validated.

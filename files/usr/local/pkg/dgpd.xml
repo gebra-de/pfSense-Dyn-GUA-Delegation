@@ -46,7 +46,7 @@
 			<type>button</type>
 			<buttonclass>btn-info btn-sm</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Acknowledge the persistent downstream-impact notice after checking affected routers.</description>
+			<description>Confirm that the persistent downstream impact notice was reviewed.</description>
 		</field>
 		<field>
 			<fielddescr>Available Prefixes</fielddescr>
@@ -104,81 +104,87 @@
 			<fielddescr>Propose</fielddescr>
 			<fieldname>dgpd_action_propose</fieldname>
 			<type>button</type>
-			<buttonclass>btn-info btn-sm</buttonclass>
+			<combinefields>begin</combinefields>
+			<buttonclass>btn-info btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, replacing current edits. This does not save, reserve a prefix, or change services. Apply checks availability again.</description>
+			<description>Copy a free, unreserved candidate into the editor without saving it.</description>
 		</field>
 		<field>
 			<fielddescr>Apply Assignment</fielddescr>
 			<fieldname>dgpd_action_apply</fieldname>
 			<type>button</type>
-			<buttonclass>btn-info btn-sm</buttonclass>
+			<buttonclass>btn-info btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description><![CDATA[Validate and stage the assignment. Use <strong>Save Settings</strong> below to commit it.]]></description>
+			<description>Validate and stage the displayed assignment.</description>
 		</field>
 		<field>
 			<fielddescr>Save Settings</fielddescr>
 			<fieldname>dgpd_action_native_apply</fieldname>
 			<type>button</type>
-			<buttonclass>btn-success btn-sm</buttonclass>
-			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status.</description>
-		</field>
-		<field>
-			<fielddescr>Disable</fielddescr>
-			<fieldname>dgpd_action_disable</fieldname>
-			<type>button</type>
-			<buttonclass>btn-warning btn-sm</buttonclass>
-			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease is revoked only after a downstream-interruption warning is confirmed.</description>
+			<combinefields>end</combinefields>
+			<buttonclass>btn-success btn-sm btn-block</buttonclass>
+			<buttonicon>fa-solid fa-save</buttonicon>
+			<description>Save the staged operation and verify the live Kea pool.</description>
 		</field>
 		<field>
 			<fielddescr>Enable</fielddescr>
 			<fieldname>dgpd_action_enable</fieldname>
 			<type>button</type>
-			<buttonclass>btn-info btn-sm</buttonclass>
+			<combinefields>begin</combinefields>
+			<buttonclass>btn-success btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
 			<description>Revalidate and restore a disabled reservation.</description>
+		</field>
+		<field>
+			<fielddescr>Disable</fielddescr>
+			<fieldname>dgpd_action_disable</fieldname>
+			<type>button</type>
+			<buttonclass>btn-warning btn-sm btn-block</buttonclass>
+			<buttonicon>fa-solid fa-cog</buttonicon>
+			<description>Remove the native pool and retain the DGPD reservation.</description>
 		</field>
 		<field>
 			<fielddescr>Delete</fielddescr>
 			<fieldname>dgpd_action_delete</fieldname>
 			<type>button</type>
-			<buttonclass>btn-danger btn-sm</buttonclass>
-			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description><![CDATA[Remove the native PD pool and release the DGPD reservation. <strong>Warning:</strong> Active IA_PD leases in this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may require renewal or manual reconfiguration.]]></description>
+			<combinefields>end</combinefields>
+			<buttonclass>btn-danger btn-sm btn-block</buttonclass>
+			<buttonicon>fa-solid fa-trash-can</buttonicon>
+			<description>Remove the native pool and release its DGPD reservation.</description>
 		</field>
 		<field>
 			<fielddescr>Recover</fielddescr>
 			<fieldname>dgpd_action_recover</fieldname>
 			<type>button</type>
-			<buttonclass>btn-success btn-sm</buttonclass>
+			<combinefields>begin</combinefields>
+			<buttonclass>btn-success btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Recover a saved operation after resolving a failure. This does not reset assignments or remove leases.</description>
+			<description><![CDATA[Restore <strong>Save Settings</strong> for an interrupted pending operation.]]></description>
 		</field>
 		<field>
-			<fielddescr>Restore DGPD Assignment</fielddescr>
+			<fielddescr>Restore Assignment</fielddescr>
 			<fieldname>dgpd_action_restore_assignment</fieldname>
 			<type>button</type>
-			<buttonclass>btn-info btn-sm</buttonclass>
+			<buttonclass>btn-info btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Revalidate and restore the saved DGPD assignment.</description>
+			<description>Replace an external native change with the saved DGPD assignment.</description>
 		</field>
 		<field>
 			<fielddescr>Accept Native Change</fielddescr>
 			<fieldname>dgpd_action_accept_native</fieldname>
 			<type>button</type>
-			<buttonclass>btn-info btn-sm</buttonclass>
+			<buttonclass>btn-success btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Accept a fully validated, upstream-contained and collision-free native Kea PD change as the new DGPD assignment.</description>
+			<description>Adopt a validated, upstream-contained, collision-free native assignment.</description>
 		</field>
 		<field>
 			<fielddescr>Release Ownership</fielddescr>
 			<fieldname>dgpd_action_release_ownership</fieldname>
 			<type>button</type>
-			<buttonclass>btn-info btn-sm</buttonclass>
+			<combinefields>end</combinefields>
+			<buttonclass>btn-warning btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
-			<description>Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.</description>
+			<description>Stop managing the assignment without changing native DHCPv6 settings.</description>
 		</field>
 		<field>
 			<fielddescr>Debug Logging</fielddescr>
@@ -193,17 +199,17 @@
 			<description><![CDATA[
 				<div id="dgpd-usage" class="infoblock">
 					<ul>
-						<li><strong>Propose</strong><ul><li>Copy a free, unreserved candidate into the editor without saving it.</li></ul></li>
-						<li><strong>Apply Assignment</strong><ul><li>Validate and stage the displayed assignment.</li></ul></li>
-						<li><strong>Save Settings</strong><ul><li>Save the staged operation and verify the live Kea pool.</li></ul></li>
-						<li><strong>Disable</strong><ul><li>Remove the native pool and retain the DGPD reservation.</li></ul></li>
+						<li><strong>Propose</strong><ul><li>Copy the displayed allocator proposal into <strong>PD Pool Prefix</strong> and <strong>Pool LEN</strong>, replacing current edits. This does not save or reserve a prefix and does not change services. <strong>Apply Assignment</strong> checks availability again.</li></ul></li>
+						<li><strong>Apply Assignment</strong><ul><li>Validate and stage the assignment. Use <strong>Save Settings</strong> to commit it.</li></ul></li>
+						<li><strong>Save Settings</strong><ul><li>Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status.</li></ul></li>
+						<li><strong>Disable</strong><ul><li>Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease is revoked only after a downstream-interruption warning is confirmed.</li></ul></li>
 						<li><strong>Enable</strong><ul><li>Revalidate and restore a disabled reservation.</li></ul></li>
-						<li><strong>Delete</strong><ul><li>Remove the native pool and release its DGPD reservation.</li></ul></li>
-						<li><strong>Recover</strong><ul><li>Restore <strong>Save Settings</strong> for an interrupted pending operation.</li></ul></li>
-						<li><strong>Acknowledge Notice</strong><ul><li>Confirm that the persistent downstream impact notice was reviewed.</li></ul></li>
-						<li><strong>Restore DGPD Assignment</strong><ul><li>Replace an external native change with the saved DGPD assignment.</li></ul></li>
-						<li><strong>Accept Native Change</strong><ul><li>Adopt a validated, upstream-contained, collision-free native assignment.</li></ul></li>
-						<li><strong>Release Ownership</strong><ul><li>Stop managing the assignment without changing native DHCPv6 settings.</li></ul></li>
+						<li><strong>Delete</strong><ul><li>Remove the native PD pool and release the DGPD reservation. <strong>Warning:</strong> Active IA_PD leases in this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may require renewal or manual reconfiguration.</li></ul></li>
+						<li><strong>Recover</strong><ul><li>Recover a saved operation after resolving a failure. This does not reset assignments or remove leases.</li></ul></li>
+						<li><strong>Acknowledge Notice</strong><ul><li>Acknowledge the persistent downstream-impact notice after checking affected routers.</li></ul></li>
+						<li><strong>Restore Assignment</strong><ul><li>Revalidate and restore the saved DGPD assignment.</li></ul></li>
+						<li><strong>Accept Native Change</strong><ul><li>Accept a fully validated, upstream-contained and collision-free native Kea PD change as the new DGPD assignment.</li></ul></li>
+						<li><strong>Release Ownership</strong><ul><li>Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.</li></ul></li>
 					</ul>
 				</div>
 			]]></description>

@@ -256,7 +256,7 @@ function dgpd_socket(): string {
 	$config = json_decode((string)@file_get_contents('/usr/local/etc/kea/kea-dhcp6.conf'), true);
 	$socket = $config['Dhcp6']['control-socket']['socket-name'] ?? '/var/run/kea/kea6-ctrl-socket';
 	if (!is_string($socket) || !str_starts_with($socket, '/var/run/') || str_contains($socket, "\0")) {
-		throw new RuntimeException(gettext('Unsupported Kea control socket path'));
+		throw new RuntimeException(gettext('Unsupported Kea DHCPv6 UNIX control socket path'));
 	}
 	return $socket;
 }
@@ -269,7 +269,7 @@ function dgpd_command(string $command, ?array $arguments = null): array {
 	$socket = dgpd_socket();
 	$stream = @stream_socket_client("unix://{$socket}", $error, $message, 5);
 	if ($stream === false) {
-		throw new RuntimeException(gettext('Enable Kea DHCPv6: The control socket is unavailable'));
+		throw new RuntimeException(gettext('Enable Kea DHCPv6: The DHCPv6 UNIX control socket is unavailable'));
 	}
 	try {
 		stream_set_timeout($stream, 10);
@@ -383,9 +383,9 @@ function dgpd_prerequisites(): array {
 			}
 		}
 	}
-	$checks[] = ['name' => 'Kea control socket', 'ready' => $socket_ready,
+	$checks[] = ['name' => 'Kea DHCPv6 UNIX control socket', 'ready' => $socket_ready,
 		'required' => true, 'message' => $socket_ready ? 'Available' :
-		'Enable Kea DHCPv6: The control socket is unavailable'];
+		'Enable Kea DHCPv6: The DHCPv6 UNIX control socket is unavailable'];
 	$checks[] = ['name' => 'Kea lease commands', 'ready' => $leases_ready,
 		'required' => true, 'message' => $leases_ready ? 'Available' :
 		'Enable Kea lease commands (libdhcp_lease_cmds)'];
@@ -1741,14 +1741,15 @@ function dgpd_gui_localize_fields(array $fields): array {
 		'dgpd_action_enable' => gettext('Enable'),
 		'dgpd_action_delete' => gettext('Delete'),
 		'dgpd_action_recover' => gettext('Recover'),
-		'dgpd_action_restore_assignment' => gettext('Restore DGPD Assignment'),
+		'dgpd_action_restore_assignment' => gettext('Restore Assignment'),
 		'dgpd_action_accept_native' => gettext('Accept Native Change'),
 		'dgpd_action_release_ownership' => gettext('Release Ownership'),
 		'dgpd_debug' => gettext('Enable Debug Logging'),
 		'dgpd_usage' => gettext('Usage'),
 	];
 	$descriptions = [
-		'dgpd_action_acknowledge' => gettext('Acknowledge the persistent downstream-impact notice after checking affected routers.'),
+		'dgpd_action_acknowledge' => gettext(
+			'Confirm that the persistent downstream impact notice was reviewed.'),
 		'dgpd_proposals' => gettext('Loading allocator proposals.'),
 		'dgpd_current' => gettext('No interface selected.'),
 		'dgpd_interface' => gettext('Select an eligible Track6 interface with active Kea DHCPv6.'),
@@ -1757,17 +1758,27 @@ function dgpd_gui_localize_fields(array $fields): array {
 		'dgpd_prefix_len' => gettext('Prefix length of the complete Kea PD pool. Kea delegates this complete prefix to one downstream router.'),
 		'dgpd_downstream_confirm' => gettext('I understand that changing an existing delegated prefix may require DHCPv6-PD renewal or manual reconfiguration on downstream routers.'),
 		'dgpd_manage' => gettext('Explicitly authorize DGPD to manage this interface. Existing native PD assignments remain protected.'),
-		'dgpd_action_propose' => gettext('Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, replacing current edits. This does not save, reserve a prefix, or change services. Apply checks availability again.'),
-		'dgpd_action_apply' => gettext('Validate and stage the assignment. Use Save Settings below to commit it.'),
-		'dgpd_action_native_apply' => gettext('Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status.'),
-		'dgpd_action_disable' => gettext('Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease is revoked only after a downstream-interruption warning is confirmed.'),
+		'dgpd_action_propose' => gettext(
+			'Copy a free, unreserved candidate into the editor without saving it.'),
+		'dgpd_action_apply' => gettext('Validate and stage the displayed assignment.'),
+		'dgpd_action_native_apply' => gettext(
+			'Save the staged operation and verify the live Kea pool.'),
+		'dgpd_action_disable' => gettext(
+			'Remove the native pool and retain the DGPD reservation.'),
 		'dgpd_action_enable' => gettext('Revalidate and restore a disabled reservation.'),
-		'dgpd_action_delete' => gettext('Remove the native PD pool and release the DGPD reservation. Warning: Active IA_PD leases in this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may require renewal or manual reconfiguration.'),
-		'dgpd_action_recover' => gettext('Recover a saved operation after resolving a failure. This does not reset assignments or remove leases.'),
-		'dgpd_action_restore_assignment' => gettext('Revalidate and restore the saved DGPD assignment.'),
-		'dgpd_action_accept_native' => gettext('Accept a fully validated, upstream-contained and collision-free native Kea PD change as the new DGPD assignment.'),
-		'dgpd_action_release_ownership' => gettext('Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.'),
-		'dgpd_debug' => gettext('Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. Disable this option during normal operation.'),
+		'dgpd_action_delete' => gettext(
+			'Remove the native pool and release its DGPD reservation.'),
+		'dgpd_action_recover' => gettext(
+			'Restore Save Settings for an interrupted pending operation.'),
+		'dgpd_action_restore_assignment' => gettext(
+			'Replace an external native change with the saved DGPD assignment.'),
+		'dgpd_action_accept_native' => gettext(
+			'Adopt a validated, upstream-contained, collision-free native assignment.'),
+		'dgpd_action_release_ownership' => gettext(
+			'Stop managing the assignment without changing native DHCPv6 settings.'),
+		'dgpd_debug' => gettext(
+			'Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. ' .
+			'Disable this option during normal operation.'),
 	];
 	foreach ($fields as &$field) {
 		$name = $field['fieldname'] ?? '';
@@ -1787,17 +1798,35 @@ function dgpd_gui_localize_fields(array $fields): array {
 
 function dgpd_gui_usage(): string {
 	$items = [
-		gettext('Propose') => gettext('Copy a free, unreserved candidate into the editor without saving it.'),
-		gettext('Apply Assignment') => gettext('Validate and stage the displayed assignment.'),
-		gettext('Save Settings') => gettext('Save the staged operation and verify the live Kea pool.'),
-		gettext('Disable') => gettext('Remove the native pool and retain the DGPD reservation.'),
+		gettext('Propose') => gettext(
+			'Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, replacing current edits. ' .
+			'This does not save or reserve a prefix and does not change services. ' .
+			'Apply Assignment checks availability again.'),
+		gettext('Apply Assignment') => gettext(
+			'Validate and stage the assignment. Use Save Settings to commit it.'),
+		gettext('Save Settings') => gettext(
+			'Save the logging setting and, when an assignment is pending, verify the live Kea pool and ' .
+			'finalize DGPD status.'),
+		gettext('Disable') => gettext(
+			'Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease ' .
+			'is revoked only after a downstream-interruption warning is confirmed.'),
 		gettext('Enable') => gettext('Revalidate and restore a disabled reservation.'),
-		gettext('Delete') => gettext('Remove the native pool and release its DGPD reservation.'),
-		gettext('Recover') => gettext('Restore Save Settings for an interrupted pending operation.'),
-		gettext('Acknowledge Notice') => gettext('Confirm that the persistent downstream impact notice was reviewed.'),
-		gettext('Restore DGPD Assignment') => gettext('Replace an external native change with the saved DGPD assignment.'),
-		gettext('Accept Native Change') => gettext('Adopt a validated, upstream-contained, collision-free native assignment.'),
-		gettext('Release Ownership') => gettext('Stop managing the assignment without changing native DHCPv6 settings.'),
+		gettext('Delete') => gettext(
+			'Remove the native PD pool and release the DGPD reservation. Warning: Active IA_PD leases in ' .
+			'this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may ' .
+			'require renewal or manual reconfiguration.'),
+		gettext('Recover') => gettext(
+			'Recover a saved operation after resolving a failure. This does not reset assignments or ' .
+			'remove leases.'),
+		gettext('Acknowledge Notice') => gettext(
+			'Acknowledge the persistent downstream-impact notice after checking affected routers.'),
+		gettext('Restore Assignment') => gettext(
+			'Revalidate and restore the saved DGPD assignment.'),
+		gettext('Accept Native Change') => gettext(
+			'Accept a fully validated, upstream-contained and collision-free native Kea PD change as the ' .
+			'new DGPD assignment.'),
+		gettext('Release Ownership') => gettext(
+			'Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.'),
 	];
 	$html = '<div id="dgpd-usage" class="infoblock"><ul>';
 	foreach ($items as $label => $description) {
@@ -1939,13 +1968,47 @@ function dgpd_gui_after_form(): void {
 	}
 	unset($model);
 	$json = json_encode($models, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR);
-	echo '<script type="text/javascript">const dgpdModels = ' . $json . ';';
+	$group_labels = json_encode([
+		'workflow' => gettext('Assignment Workflow'),
+		'state' => gettext('Assignment State'),
+		'conflict' => gettext('Conflict Resolution'),
+	], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR);
+	echo '<script type="text/javascript">const dgpdModels = ' . $json .
+		'; const dgpdGroupLabels = ' . $group_labels . ';';
 echo <<<'DGPD_JS'
 (function () {
 	const form = document.getElementById('dgpd_interface');
 	if (!form) {
 		return;
 	}
+	function configureActionRow(firstButtonId, labelText) {
+		const firstButton = document.getElementById(firstButtonId);
+		const row = firstButton ? firstButton.closest('.form-group') : null;
+		if (!row) {
+			return;
+		}
+		const label = row.querySelector('label.control-label span');
+		if (label) {
+			label.textContent = labelText;
+		}
+		row.querySelectorAll('button[id^="dgpd_action_"]').forEach(function (button) {
+			const column = button.parentElement;
+			if (!column) {
+				return;
+			}
+			Array.from(column.classList).forEach(function (className) {
+				if (className.indexOf('col-sm-') === 0) {
+					column.classList.remove(className);
+				}
+			});
+			column.classList.add('col-sm-2');
+			column.style.paddingLeft = '20px';
+			column.style.paddingRight = '20px';
+		});
+	}
+	configureActionRow('dgpd_action_propose', dgpdGroupLabels.workflow);
+	configureActionRow('dgpd_action_enable', dgpdGroupLabels.state);
+	configureActionRow('dgpd_action_recover', dgpdGroupLabels.conflict);
 	const refresh = document.getElementById('submit');
 	if (refresh) {
 		const refreshRow = refresh.closest('.form-group');
