@@ -11,8 +11,8 @@ native Track Interface configuration, Kea DHCPv6, and pfSense lease routing.
 It discovers the delegated upstream prefix, proposes collision-free downstream
 pools, and keeps explicit ownership of the assignments it manages.
 
-> **Project status:** Version 0.8.1_9 Beta RC3 for pfSense CE 2.9.0. Review the
-> current limitations before using it outside a test environment.
+> **Project status:** Version 1.0.0 for pfSense CE 2.9.0. Review the current
+> limitations before deployment.
 
 ## Introduction
 
@@ -118,11 +118,12 @@ complete IA_PD by itself.
 
 Open **Services > Dynamic GUA-PD**.
 
-Beta RC3 organizes the action controls into three workflow rows:
+Version 1.0.0 organizes the action controls into four workflow rows:
 
 - **Assignment Workflow** contains proposal, staging, and native save actions.
 - **Assignment State** contains Enable, Disable, and Delete.
 - **Conflict Resolution** contains recovery and ownership decisions.
+- **Save Settings** provides the dedicated native commit action.
 
 Buttons use consistent widths and native pfSense colors and icons. Concise help
 appears directly below each action so its immediate effect is visible without
@@ -213,8 +214,8 @@ Logging** setting adds detailed diagnostics for evaluation and bug reports and
 should be disabled during ordinary use.
 
 The WebUI and installed `build-info` file identify the package version, build
-timestamp, and source commit. This allows a report to identify the exact beta
-build without changing pfSense's package-version rules.
+timestamp, and source commit. This allows a report to identify the exact build
+without changing pfSense's package-version rules.
 
 ## Firewall Rules
 
@@ -261,20 +262,20 @@ Missing Router Advertisement data disables only the optional comparison.
 
 DynGUA-PD is not yet available in the official pfSense package repository.
 Download the package and its SHA256 checksum from the release assets for the
-signed `beta-rc3` tag. Verify the checksum before transferring the package to
+signed `v1.0.0` tag. Verify the checksum before transferring the package to
 the firewall:
 
 ```sh
-sha256 pfSense-pkg-dgpd-0.8.1_9.pkg
+sha256 pfSense-pkg-dgpd-1.0.0.pkg
 ```
 
 Install the verified package from a pfSense shell:
 
 ```sh
-pkg add -f ./pfSense-pkg-dgpd-0.8.1_9.pkg
+pkg add -f ./pfSense-pkg-dgpd-1.0.0.pkg
 ```
 
-Back up the pfSense configuration before installing a pre-release build. After
+Back up the pfSense configuration before installing the package. After
 installation, configure the native WAN DHCPv6 client, Track Interface, and Kea
 DHCPv6 settings before opening **Services > Dynamic GUA-PD**.
 
@@ -282,10 +283,9 @@ See [`BUILD.md`](BUILD.md) to validate and build the package from source.
 
 ## Current Limitations
 
-- Version 0.8.1_9 Beta RC3 is pre-release software and continues public beta
-  qualification.
-- Complete automatic handling of every ISP renumber, WAN failure, reboot, and
-  service-reload sequence is still being validated.
+- Automatic realignment requires a valid replacement pool within the current
+  upstream delegation. DGPD disables an obsolete pool and marks it **STALE**
+  when safe realignment is not possible.
 - Router Advertisements are comparison evidence and are not an independent
   authoritative IA_PD source.
 - Historical Kea leases are treated conservatively and can prevent immediate

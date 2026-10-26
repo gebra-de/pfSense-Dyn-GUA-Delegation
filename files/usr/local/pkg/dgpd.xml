@@ -113,18 +113,10 @@
 			<fielddescr>Apply Assignment</fielddescr>
 			<fieldname>dgpd_action_apply</fieldname>
 			<type>button</type>
+			<combinefields>end</combinefields>
 			<buttonclass>btn-info btn-sm btn-block</buttonclass>
 			<buttonicon>fa-solid fa-cog</buttonicon>
 			<description>Validate and stage the displayed assignment.</description>
-		</field>
-		<field>
-			<fielddescr>Save Settings</fielddescr>
-			<fieldname>dgpd_action_native_apply</fieldname>
-			<type>button</type>
-			<combinefields>end</combinefields>
-			<buttonclass>btn-success btn-sm btn-block</buttonclass>
-			<buttonicon>fa-solid fa-save</buttonicon>
-			<description>Save the staged operation and verify the live Kea pool.</description>
 		</field>
 		<field>
 			<fielddescr>Enable</fielddescr>
@@ -187,6 +179,13 @@
 			<description>Stop managing the assignment without changing native DHCPv6 settings.</description>
 		</field>
 		<field>
+			<fielddescr>Save Settings</fielddescr>
+			<fieldname>dgpd_action_native_apply</fieldname>
+			<type>button</type>
+			<buttonclass>btn-success btn-sm btn-block</buttonclass>
+			<buttonicon>fa-solid fa-save</buttonicon>
+		</field>
+		<field>
 			<fielddescr>Debug Logging</fielddescr>
 			<fieldname>dgpd_debug</fieldname>
 			<type>checkbox</type>
@@ -201,7 +200,8 @@
 					<ul>
 						<li><strong>Propose</strong><ul><li>Copy the displayed allocator proposal into <strong>PD Pool Prefix</strong> and <strong>Pool LEN</strong>, replacing current edits. This does not save or reserve a prefix and does not change services. <strong>Apply Assignment</strong> checks availability again.</li></ul></li>
 						<li><strong>Apply Assignment</strong><ul><li>Validate and stage the assignment. Use <strong>Save Settings</strong> to commit it.</li></ul></li>
-						<li><strong>Save Settings</strong><ul><li>Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status.</li></ul></li>
+						<li><strong>Allow Interface Management</strong><ul><li>Confirm ownership once when DGPD starts managing an interface. The confirmation is reset when another interface is selected.</li></ul></li>
+						<li><strong>Downstream Impact</strong><ul><li>Confirm the warning when an existing delegated prefix is changed. The confirmation remains hidden when the downstream prefix is unchanged.</li></ul></li>
 						<li><strong>Disable</strong><ul><li>Disable the native PD pool while retaining the DGPD reservation. An active owned IA_PD lease is revoked only after a downstream-interruption warning is confirmed.</li></ul></li>
 						<li><strong>Enable</strong><ul><li>Revalidate and restore a disabled reservation.</li></ul></li>
 						<li><strong>Delete</strong><ul><li>Remove the native PD pool and release the DGPD reservation. <strong>Warning:</strong> Active IA_PD leases in this DGPD-owned pool will be revoked. This interrupts downstream prefix delegation and may require renewal or manual reconfiguration.</li></ul></li>
@@ -210,6 +210,8 @@
 						<li><strong>Restore Assignment</strong><ul><li>Revalidate and restore the saved DGPD assignment.</li></ul></li>
 						<li><strong>Accept Native Change</strong><ul><li>Accept a fully validated, upstream-contained and collision-free native Kea PD change as the new DGPD assignment.</li></ul></li>
 						<li><strong>Release Ownership</strong><ul><li>Release the DGPD reservation while leaving the current native DHCPv6 configuration unchanged.</li></ul></li>
+						<li><strong>Save Settings</strong><ul><li>Commit changes of settings.</li></ul></li>
+						<li><strong>Enable Debug Logging</strong><ul><li>Record detailed diagnostics for evaluation and error reports.</li></ul></li>
 					</ul>
 				</div>
 			]]></description>

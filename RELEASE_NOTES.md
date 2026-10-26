@@ -1,54 +1,69 @@
-# DynGUA-PD 0.8.1_9 — Beta RC3
+# DynGUA-PD 1.0.0
 
-Beta RC3 improves the Dynamic GUA-PD WebUI so routine operation is easier to
-scan while detailed guidance remains available when needed. It also clarifies
-the native Kea dependency and aligns package lifecycle scripts more closely
-with FreeBSD Ports and pfSense conventions.
+DynGUA-PD 1.0.0 is the first release qualified through the complete beta test
+cycle on pfSense CE 2.9.0. It manages downstream IPv6 prefix delegation through
+native pfSense Track Interface, Kea DHCPv6, package, firewall-alias, and lease
+routing facilities.
 
-## WebUI Improvements
+## Highlights
 
-- Organize action buttons into three named rows:
-  **Assignment Workflow**, **Assignment State**, and **Conflict Resolution**.
-- Give all action buttons consistent responsive widths and horizontal spacing.
-- Use native pfSense button colors with cog icons for functional actions, the
-  save icon for **Save Settings**, and the trash icon for **Delete**.
-- Shorten **Restore DGPD Assignment** to **Restore Assignment** so the caption
-  fits the standard button width.
-- Show concise action summaries directly below the buttons.
-- Move the complete operational explanations, warnings, and staging details to
-  the expandable **Usage** information.
-- Clarify that **Apply Assignment** validates and stages an assignment while
-  **Save Settings** commits and verifies it.
+- Discovers the current upstream IA_PD through the tested allocator and uses
+  Router Advertisements as secondary comparison evidence.
+- Proposes aligned, upstream-contained downstream pools through `/64` while
+  excluding interface networks, Kea pools, leases, and existing reservations.
+- Stages and commits assignments through the native pfSense DHCPv6 workflow.
+- Detects safe native changes, ownership conflicts, stale assignments, and
+  incomplete prerequisites without overwriting unrelated configuration.
+- Realigns managed assignments after a compatible upstream prefix change and
+  disables obsolete assignments when no safe replacement exists.
+- Revokes only matching IA_PD leases when a confirmed Disable or Delete action
+  requires downstream interruption.
+- Maintains per-interface `DGPD_<INTERFACE>_PD` aliases and the aggregate
+  `DGPD_ALL_PD` alias for administrator-defined firewall rules.
+- Uses native `kea2fib6` lease routing instead of implementing a separate route
+  manager.
 
-## Diagnostics and Packaging
+## Web Interface
 
-- Name the required Kea interface explicitly as the **Kea DHCPv6 UNIX control
-  socket**. The optional Kea HTTP Control Agent is not a DGPD prerequisite.
-- Use the FreeBSD Ports `PREFIX` substitution in package install and deinstall
-  scripts.
-- Preserve the existing native pfSense feedback categories, package framework,
-  configuration routines, and Kea DHCPv6 integration.
+- Groups controls into **Assignment Workflow**, **Assignment State**,
+  **Conflict Resolution**, and a dedicated **Save Settings** row.
+- Shows persistent staged-operation guidance until an assignment is committed
+  or otherwise resolved.
+- Shows progress while staged settings are being saved and prevents repeated
+  submissions during the transition.
+- Limits transient success-message cleanup to DGPD-owned notices.
+- Provides controlled Restore, Accept Native Change, and Release Ownership
+  paths for external native configuration changes.
+- Retains optional debug logging for diagnostics without displaying the former
+  beta warning.
+- Includes a complete German translation catalog; English remains the source
+  language.
+
+## Safety and Compatibility
+
+- Protects foreign aliases and unrelated Kea DHCPv6 configuration.
+- Requires explicit management consent when an interface is first adopted or
+  an existing downstream prefix is changed.
+- Warns before actions that can interrupt downstream connectivity.
+- Preserves empty aliases referenced by firewall rules.
+- Uses native pfSense package hooks and does not patch pfSense core files.
 
 ## Validation
 
-- 66 isolated regression tests passed on pfSense CE 2.9.0.
-- PHP syntax checks passed for every runtime and test file.
-- Package XML and shell syntax checks passed.
-- `check-plist` passed without missing or unexpected files.
-- `portlint -AC` completed without fatal errors.
-- Upgrade installation completed successfully on pfSense CE 2.9.0.
-- Kea DHCPv4 and DHCPv6 remained active after installation.
-- The installed package metadata and runtime help text were verified.
+- 68 isolated regression tests pass on pfSense CE 2.9.0.
+- PHP syntax, package XML, translation catalogs, `portlint`, package integrity,
+  and `check-plist` are validated as part of the release build.
+- Fresh installation, upgrade, reboot, service reload, IA_PD renumbering,
+  assignment recovery, lease revocation, and firewall-alias synchronization
+  were exercised during beta testing.
 
 ## Package
 
-- Version: `0.8.1_9`
+- Version: `1.0.0`
 - Target: pfSense CE 2.9.0 / FreeBSD 16 amd64
-- Build ID: `20261016-114825`
-- Source commit: `6f3686f8b506`
 - License: Apache-2.0
-- SHA256: `3b6f1020c654a3014d9e75fc773cc047b303148ef19b2221629515ee0780f201`
+- Tag: `v1.0.0`
+- Artifact: `pfSense-pkg-dgpd-1.0.0.pkg`
 
-Back up the pfSense configuration before installing this pre-release package.
-Firewall aliases are maintained by DynGUA-PD; firewall and NAT rules remain
-under administrator control.
+Back up the pfSense configuration before installation. Verify the published
+SHA256 checksum before transferring the package to the firewall.

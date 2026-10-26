@@ -2,7 +2,7 @@
 
 DynGUA-PD is a native FreeBSD/pfSense port with no compilation step. Build it
 on an isolated amd64 FreeBSD or pfSense system that matches the target pfSense
-release. Beta RC2 targets pfSense CE 2.9.0 and FreeBSD 16.
+release. Version 1.0.0 targets pfSense CE 2.9.0 and FreeBSD 16.
 
 ## Requirements
 
@@ -56,18 +56,18 @@ This override does not make a mismatched ports tree compatible.
 ## Inspect and Test
 
 ```sh
-pkg info -F work/pkg/pfSense-pkg-dgpd-0.8.1_7.pkg
-tar -tf work/pkg/pfSense-pkg-dgpd-0.8.1_7.pkg
-sha256 work/pkg/pfSense-pkg-dgpd-0.8.1_7.pkg
+pkg info -F work/pkg/pfSense-pkg-dgpd-1.0.0.pkg
+tar -tf work/pkg/pfSense-pkg-dgpd-1.0.0.pkg
+sha256 work/pkg/pfSense-pkg-dgpd-1.0.0.pkg
 php tests/dgpd_test.php
 ```
 
 Confirm the package name, version, origin, license, maintainer, packing list,
-build ID, and source commit. Back up the pfSense configuration before testing a
-pre-release package.
+build ID, and source commit. Back up the pfSense configuration before testing
+the package.
 
 ```sh
-pkg add -f work/pkg/pfSense-pkg-dgpd-0.8.1_7.pkg
+pkg add -f work/pkg/pfSense-pkg-dgpd-1.0.0.pkg
 pkg check -s pfSense-pkg-dgpd
 pkg info pfSense-pkg-dgpd
 ```

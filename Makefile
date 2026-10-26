@@ -2,8 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 PORTNAME=	pfSense-pkg-dgpd
-PORTVERSION=	0.8.1
-PORTREVISION=	9
+PORTVERSION=	1.0.0
 CATEGORIES=	net
 MASTER_SITES=	# empty
 DISTFILES=	# empty

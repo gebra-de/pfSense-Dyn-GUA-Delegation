@@ -1,553 +1,710 @@
-# SOME DESCRIPTIVE TITLE.
+# DynGUA-PD translation template.
 # Copyright (C) 2026 gebra
 # SPDX-License-Identifier: Apache-2.0
 # This file is distributed under the Apache License, Version 2.0.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DynGUA-PD 0.8.0 Beta RC1a\n"
+"Project-Id-Version: DynGUA-PD 1.0.0\n"
 "Report-Msgid-Bugs-To: projects@gbrands.de\n"
-"POT-Creation-Date: 2026-10-13 13:24+0200\n"
+"POT-Creation-Date: 2026-10-19 12:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: gebra <projects@gbrands.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: files/usr/local/pkg/dgpd.inc:550
+#: files/usr/local/pkg/dgpd.inc:798
 #, php-format
 msgid "%s: conflict-free native PD change detected"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:553
+#: files/usr/local/pkg/dgpd.inc:801
 #, php-format
 msgid "%s: native PD configuration changed externally: %s"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:980 files/usr/local/pkg/dgpd.inc:1286
+#: files/usr/local/pkg/dgpd.inc:1312 files/usr/local/pkg/dgpd.inc:1707
 msgid "; resolve in Services > Dynamic GUA-PD"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:567 files/usr/local/pkg/dgpd.inc:601
-#: files/usr/local/pkg/dgpd.inc:804
+#: files/usr/local/pkg/dgpd.inc:819 files/usr/local/pkg/dgpd.inc:853
+#: files/usr/local/pkg/dgpd.inc:1069
 msgid "A native apply is pending"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:690
+#: files/usr/local/pkg/dgpd.inc:950
 msgid "A native apply is pending; use Recover before another change"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1370 files/usr/local/pkg/dgpd.inc:1422
+#: files/usr/local/pkg/dgpd.inc:1982
+msgid "ACTIVE"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1796 files/usr/local/pkg/dgpd.inc:1880
 msgid "Accept Native Change"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1392
+#: files/usr/local/pkg/dgpd.inc:1881
 msgid ""
 "Accept a fully validated, upstream-contained and collision-free native Kea "
 "PD change as the new DGPD assignment."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1353 files/usr/local/pkg/dgpd.inc:1420
+#: files/usr/local/pkg/dgpd.inc:1779 files/usr/local/pkg/dgpd.inc:1876
 msgid "Acknowledge Notice"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1375
+#: files/usr/local/pkg/dgpd.inc:1877
 msgid ""
 "Acknowledge the persistent downstream-impact notice after checking affected "
 "routers."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:65
+#: files/usr/local/pkg/dgpd_kea.inc:68
 msgid "Active assignments"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1422
+#: files/usr/local/pkg/dgpd.inc:1825
 msgid ""
 "Adopt a validated, upstream-contained, collision-free native assignment."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:421
+#: files/usr/local/pkg/dgpd.inc:358
+msgid "Allocator"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:546 files/usr/local/pkg/dgpd.inc:552
+#, php-format
+msgid "Allocator unavailable: %s"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:634
 msgid "Allocator upstream missing"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1379
+#: files/usr/local/pkg/dgpd.inc:1807
 msgid "Allocator upstream prefix and pool length."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:603
+#: files/usr/local/pkg/dgpd.inc:1787 files/usr/local/pkg/dgpd.inc:1859
+msgid "Allow Interface Management"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:957
+msgid "Allow Interface Management for the selected interface (checkbox)"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:856
 msgid "Already unmanaged"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:645
+#: files/usr/local/pkg/dgpd.inc:905
 msgid ""
 "An active IA_PD lease exists in this DGPD assignment; explicit revocation "
 "confirmation is required"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1363 files/usr/local/pkg/dgpd.inc:1414
+#: files/usr/local/pkg/dgpd.inc:1789 files/usr/local/pkg/dgpd.inc:1857
 msgid "Apply Assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1354
+#: files/usr/local/pkg/dgpd.inc:2051
+msgid "Assignment State"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:2050
+msgid "Assignment Workflow"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1489
+msgid "Assignment deletion staged."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:366 files/usr/local/pkg/dgpd.inc:400
+#: files/usr/local/pkg/dgpd.inc:403 files/usr/local/pkg/dgpd.inc:406
+msgid "Available"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1780
 msgid "Available Prefixes"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1042
+#: files/usr/local/pkg/dgpd.inc:410
+msgid "Available for prefix comparison"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1987
+msgid "CONFLICT"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1381
 msgid "Cannot lock DGPD worker signal"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1038
+#: files/usr/local/pkg/dgpd.inc:1377
 msgid "Cannot open DGPD worker signal; pending state retained"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1051
+#: files/usr/local/pkg/dgpd.inc:1390
 msgid "Cannot save DGPD worker signal"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1386
-msgid "Save the staged assignment, verify the live Kea pool, and finalize DGPD status."
+#: files/usr/local/pkg/dgpd.inc:2053
+msgid "Commit Changes"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1415
-msgid "Save the staged operation and verify the live Kea pool."
+#: files/usr/local/pkg/dgpd.inc:1885
+msgid "Commit changes of settings."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:697
-msgid "Allow Interface Management for the selected interface (checkbox)"
+#: files/usr/local/pkg/dgpd.inc:1860
+msgid ""
+"Confirm ownership once when DGPD starts managing an interface. The "
+"confirmation is reset when another interface is selected."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1237
+#: files/usr/local/pkg/dgpd.inc:1653
 msgid ""
 "Confirm that downstream routers may require DHCPv6-PD renewal or manual "
 "reconfiguration"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1420
+#: files/usr/local/pkg/dgpd.inc:1803
 msgid "Confirm that the persistent downstream impact notice was reviewed."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:586
+#: files/usr/local/pkg/dgpd.inc:1863
+msgid ""
+"Confirm the warning when an existing delegated prefix is changed. The "
+"confirmation remains hidden when the downstream prefix is unchanged."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:2052
+msgid "Conflict Resolution"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:838
 msgid "Conflict-free native PD change accepted; DGPD ownership updated."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1413
+#: files/usr/local/pkg/dgpd.inc:1813
 msgid "Copy a free, unreserved candidate into the editor without saving it."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1384
+#: files/usr/local/pkg/dgpd.inc:1854
 msgid ""
 "Copy the displayed allocator proposal into PD Pool Prefix and Pool LEN, "
-"replacing current edits. This does not save or reserve a prefix and does "
-"not change services. Apply Assignment checks availability again."
+"replacing current edits. This does not save or reserve a prefix and does not "
+"change services. Apply Assignment checks availability again."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1355
+#: files/usr/local/pkg/dgpd.inc:1781
 msgid "Current Assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:49
+#: files/usr/local/pkg/dgpd.inc:476
+#, php-format
+msgid "Custom JSON invalid at %s. DGPD actions are blocked."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd_kea.inc:52
 msgid "DGPD Assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1361
-msgid "Allow Interface Management"
-msgstr ""
-
-#: files/usr/local/pkg/dgpd.inc:871
+#: files/usr/local/pkg/dgpd.inc:1197
 msgid "DGPD is busy; pending operation retained"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:561 files/usr/local/pkg/dgpd.inc:595
-#: files/usr/local/pkg/dgpd.inc:678 files/usr/local/pkg/dgpd.inc:792
+#: files/usr/local/pkg/dgpd.inc:809 files/usr/local/pkg/dgpd.inc:847
+#: files/usr/local/pkg/dgpd.inc:938 files/usr/local/pkg/dgpd.inc:1057
+#: files/usr/local/pkg/dgpd.inc:1105
 msgid "DGPD is busy; retry the action"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:608
+#: files/usr/local/pkg/dgpd.inc:864
 msgid "DGPD ownership released; native DHCPv6 configuration was not changed."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:925
+#: files/usr/local/pkg/dgpd.inc:1251
 msgid "DGPD state changed during native apply; review required"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1356
-msgid "Interface for Delegation"
+#: files/usr/local/pkg/dgpd.inc:362
+msgid "DHCPv6 WAN client"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1367 files/usr/local/pkg/dgpd.inc:1418
+#: files/usr/local/pkg/dgpd.inc:1984
+msgid "DISABLED"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1617
+msgid "Debug logging disabled."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1617
+msgid "Debug logging enabled."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1793 files/usr/local/pkg/dgpd.inc:1869
 msgid "Delete"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1365 files/usr/local/pkg/dgpd.inc:1416
+#: files/usr/local/pkg/dgpd.inc:1791 files/usr/local/pkg/dgpd.inc:1865
 msgid "Disable"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1387
+#: files/usr/local/pkg/dgpd.inc:1866
 msgid ""
 "Disable the native PD pool while retaining the DGPD reservation. An active "
 "owned IA_PD lease is revoked only after a downstream-interruption warning is "
 "confirmed."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1360
+#: files/usr/local/pkg/dgpd.inc:1786 files/usr/local/pkg/dgpd.inc:1862
 msgid "Downstream Impact"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1151
+#: files/usr/local/pkg/dgpd.inc:1563
 msgid "Downstream Prefix Change"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1205
+#: files/usr/local/pkg/dgpd.inc:1627
 msgid "Downstream-impact notice acknowledged."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:476
+#: files/usr/local/pkg/dgpd.inc:700
 msgid "Duplicate old PD pool; ownership is ambiguous"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:64
+#: files/usr/local/pkg/dgpd_kea.inc:67
 msgid "Dynamic GUA-PD Assignments"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1366 files/usr/local/pkg/dgpd.inc:1417
+#: files/usr/local/pkg/dgpd.inc:1792 files/usr/local/pkg/dgpd.inc:1868
 msgid "Enable"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:286
+#: files/usr/local/pkg/dgpd.inc:486
 msgid "Enable DHCPv6 on the selected interface"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:122
+#: files/usr/local/pkg/dgpd.inc:1798 files/usr/local/pkg/dgpd.inc:1886
+msgid "Enable Debug Logging"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:284 files/usr/local/pkg/dgpd.inc:401
 msgid "Enable Kea DHCPv6: The DHCPv6 UNIX control socket is unavailable"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:618
+#: files/usr/local/pkg/dgpd.inc:404
+msgid "Enable Kea lease commands (libdhcp_lease_cmds)"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:874
 msgid "Enable Kea lease commands: Safe lease verification failed"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:290
+#: files/usr/local/pkg/dgpd.inc:411
+msgid "Enable Router Advertisements (radvd) to compare prefixes"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:490
 msgid "Enable Track Interface on the selected interface"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1088
+#: files/usr/local/pkg/dgpd.inc:495
+#, php-format
+msgid "Enable interface %s"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:407
+msgid "Enable native Kea IPv6 routing (kea2fib6, pfSense-system)"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1473
 msgid "Error"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:273
+#: files/usr/local/pkg/dgpd.inc:472
 msgid "Expected a JSON object"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:300
+#: files/usr/local/pkg/dgpd.inc:500
 msgid "Expected exactly one live Kea subnet for selected interface"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1383
+#: files/usr/local/pkg/dgpd.inc:1811
 msgid ""
 "Explicitly authorize DGPD to manage this interface. Existing native PD "
 "assignments remain protected."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:311
+#: files/usr/local/pkg/dgpd.inc:511
 msgid "FAIL: Kea DHCPv6 is not enabled"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:308
+#: files/usr/local/pkg/dgpd.inc:508
 msgid "FAIL: Track Interface is not enabled"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1382
+#: files/usr/local/pkg/dgpd.inc:216
+#, php-format
+msgid "Firewall alias %s already exists and is not owned by DGPD"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1810
 msgid ""
 "I understand that changing an existing delegated prefix may require DHCPv6-"
 "PD renewal or manual reconfiguration on downstream routers."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:778
+#: files/usr/local/pkg/dgpd.inc:1043
 #, php-format
 msgid "INFO: PD Pool Prefix normalized from %s to %s/%d. "
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1380
+#: files/usr/local/pkg/dgpd.inc:1808
 msgid "IPv6 address of the Kea delegation pool, without a CIDR length."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:892
+#: files/usr/local/pkg/dgpd.inc:1218
 msgid "Inactive assignment conflict; native PD fields were changed"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1091
+#: files/usr/local/pkg/dgpd.inc:1476
 msgid "Information"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:48
+#: files/usr/local/pkg/dgpd_kea.inc:51
 msgid "Interface"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1046
+#: files/usr/local/pkg/dgpd.inc:1782
+msgid "Interface for Delegation"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1385
 msgid "Invalid DGPD signal generation"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:22
+#: files/usr/local/pkg/dgpd.inc:93
 msgid "Invalid IPv6 prefix"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:341
+#: files/usr/local/pkg/dgpd.inc:552
 msgid "Invalid allocator report"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:445
+#: files/usr/local/pkg/dgpd.inc:168
+msgid "Invalid interface for DGPD alias"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:669
 msgid "Invalid pool/delegation length"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:439
+#: files/usr/local/pkg/dgpd.inc:663
 msgid "Invalid prefix lengths"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:661
+#: files/usr/local/pkg/dgpd.inc:360
+msgid "Kea DHCPv6"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:399
+msgid "Kea DHCPv6 UNIX control socket"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:921
 msgid "Kea IA_PD lease revocation could not be verified; change blocked"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:172
+#: files/usr/local/pkg/dgpd.inc:334
 msgid "Kea config-get failed"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:656
+#: files/usr/local/pkg/dgpd.inc:916
 #, php-format
 msgid "Kea could not revoke IA_PD lease %s/%d"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:864
+#: files/usr/local/pkg/dgpd.inc:1190
 msgid "Kea is unavailable after native apply"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:154
+#: files/usr/local/pkg/dgpd.inc:402
+msgid "Kea lease commands"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:316
 msgid "Kea response timeout"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:147
+#: files/usr/local/pkg/dgpd.inc:309
 msgid "Kea response too large"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:135
+#: files/usr/local/pkg/dgpd.inc:297
 msgid "Kea socket write failed"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:58
+#: files/usr/local/pkg/dgpd.inc:129
 msgid ""
 "Legacy runtime DGPD assignments detected; review before native migration"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1376
+#: files/usr/local/pkg/dgpd.inc:1804
 msgid "Loading allocator proposals."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:77
+#: files/usr/local/pkg/dgpd.inc:148
 msgid "Malformed DGPD assignments"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:83
+#: files/usr/local/pkg/dgpd.inc:154
 msgid "Malformed DGPD ownership record"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:90
+#: files/usr/local/pkg/dgpd.inc:161
 msgid "Malformed DGPD pending operation"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:632
+#: files/usr/local/pkg/dgpd.inc:890
 msgid "Malformed IA_PD lease response; change blocked"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:164
+#: files/usr/local/pkg/dgpd.inc:326
 msgid "Malformed Kea response"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:622 files/usr/local/pkg/dgpd.inc:627
+#: files/usr/local/pkg/dgpd.inc:878 files/usr/local/pkg/dgpd.inc:883
 msgid "Malformed lease response; change blocked"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1173
+#: files/usr/local/pkg/dgpd.inc:1588
 msgid "Multiple DGPD actions submitted"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:684 files/usr/local/pkg/dgpd.inc:798
+#: files/usr/local/pkg/dgpd.inc:944 files/usr/local/pkg/dgpd.inc:1063
+#: files/usr/local/pkg/dgpd.inc:1111
 msgid "Native DHCP configuration is busy; retry the action"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:51
+#: files/usr/local/pkg/dgpd_kea.inc:54
 msgid "Native DHCPv6"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:533
+#: files/usr/local/pkg/dgpd.inc:775
 msgid "Native Kea runtime does not contain the changed PD assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1293
+#: files/usr/local/pkg/dgpd.inc:1716
 msgid "Native Kea runtime verification failed"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:917
+#: files/usr/local/pkg/dgpd.inc:1243
 msgid "Native Kea runtime verification failed; pending state retained"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:515
+#: files/usr/local/pkg/dgpd.inc:757
 msgid "Native PD assignment is incomplete"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:521
+#: files/usr/local/pkg/dgpd.inc:763
 msgid "Native PD assignment is not canonically aligned"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:529
+#: files/usr/local/pkg/dgpd.inc:771
 msgid "Native PD assignment overlaps another DGPD assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:512
+#: files/usr/local/pkg/dgpd.inc:754
 msgid "Native PD assignment was deleted"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:930
+#: files/usr/local/pkg/dgpd.inc:1261
 msgid "Native PD configuration changed during removal"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:464 files/usr/local/pkg/dgpd.inc:707
-#: files/usr/local/pkg/dgpd.inc:710
+#: files/usr/local/pkg/dgpd.inc:688 files/usr/local/pkg/dgpd.inc:967
+#: files/usr/local/pkg/dgpd.inc:970
 msgid "Native PD configuration is not owned by DGPD or was changed externally"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1533
+#: files/usr/local/pkg/dgpd.inc:405
+msgid "Native PD routing (pfSense-system)"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:2025
 msgid "Native apply pending. Use Recover after resolving a failure."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:571
+#: files/usr/local/pkg/dgpd.inc:823
 msgid "No DGPD assignment to update"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:33
+#: files/usr/local/pkg/dgpd_kea.inc:36
 msgid "No active Dynamic GUA-PD assignments."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1524
+#: files/usr/local/pkg/dgpd.inc:2016
 msgid "No collision-free proposal."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1003
+#: files/usr/local/pkg/dgpd.inc:1341
 msgid "No collision-free replacement pool"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1508
+#: files/usr/local/pkg/dgpd.inc:2000
 msgid "No eligible interface or proposal available."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1250
+#: files/usr/local/pkg/dgpd.inc:1668
 msgid "No free allocator proposal"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1377
+#: files/usr/local/pkg/dgpd.inc:1805
 msgid "No interface selected."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1196
-msgid "No pending DGPD operation to apply"
-msgstr ""
-
-#: files/usr/local/pkg/dgpd.inc:1210
+#: files/usr/local/pkg/dgpd.inc:1118
 msgid "No pending DGPD operation to recover"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:808
+#: files/usr/local/pkg/dgpd.inc:1073
 msgid "No saved DGPD assignment to restore"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1320 files/usr/local/pkg/dgpd.inc:1325
+#: files/usr/local/pkg/dgpd.inc:1745 files/usr/local/pkg/dgpd.inc:1750
 msgid ""
 "No tracked interface found. Enable Track Interface and Kea DHCPv6 on the "
 "desired interface."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:577
+#: files/usr/local/pkg/dgpd.inc:829
 msgid "No valid native change to accept"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:53
+#: files/usr/local/pkg/dgpd_kea.inc:56
 msgid "Open Dynamic GUA-PD"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1503
+#: files/usr/local/pkg/dgpd.inc:1995
 msgid "Open native DHCPv6 settings"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1358
+#: files/usr/local/pkg/dgpd.inc:1784
 msgid "PD Pool Prefix"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1478
+#: files/usr/local/pkg/dgpd.inc:1983
+msgid "PENDING"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1125
+msgid "Pending DGPD assignment is missing"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:367
+#, php-format
+msgid "Please install or activate %s"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1947
 msgid "Pool"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1359
+#: files/usr/local/pkg/dgpd.inc:1785
 msgid "Pool LEN"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:452
+#: files/usr/local/pkg/dgpd.inc:676
 msgid "Pool is outside the current allocator upstream prefix"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:725
+#: files/usr/local/pkg/dgpd.inc:705
+#, php-format
+msgid "Pool overlaps %s"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:987
 msgid "Pool overlaps another DGPD assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc
+#: files/usr/local/pkg/dgpd.inc:1037 files/usr/local/pkg/dgpd.inc:1468
+#: files/usr/local/pkg/dgpd.inc:1554 files/usr/local/pkg/dgpd.inc:1660
+#: files/usr/local/pkg/dgpd.inc:1766
 msgid "Prefix deleted. Save Settings to finalize operation"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1381
+#: files/usr/local/pkg/dgpd.inc:1809
 msgid ""
 "Prefix length of the complete Kea PD pool. Kea delegates this complete "
 "prefix to one downstream router."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:411
+#: files/usr/local/pkg/dgpd.inc:2058
+msgid "Prefix not aligned or usable. Please check your settings."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:624
 msgid ""
 "Prefix sources disagree: allocator / Router Advertisements; changes blocked"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1511
+#: files/usr/local/pkg/dgpd.inc:2003
 msgid "Proposal (not reserved)"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1362 files/usr/local/pkg/dgpd.inc:1413
+#: files/usr/local/pkg/dgpd.inc:1671
+#, php-format
+msgid "Proposal (not saved): %s/%d -> /%d. Enter these values to apply."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1788 files/usr/local/pkg/dgpd.inc:1853
 msgid "Propose"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1313
+#: files/usr/local/pkg/dgpd.inc:1738
 #, php-format
 msgid "RA fallback: %s/%d advertised; upstream unconfirmed, changes blocked."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1368 files/usr/local/pkg/dgpd.inc:1419
+#: files/usr/local/pkg/dgpd.inc:1829
+msgid ""
+"Record detailed allocator, prefix-source, reconciliation, Kea validation, "
+"and retry decisions. Disable this option during normal operation."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1887
+msgid "Record detailed diagnostics for evaluation and error reports."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1794 files/usr/local/pkg/dgpd.inc:1873
 msgid "Recover"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1390
+#: files/usr/local/pkg/dgpd.inc:1874
 msgid ""
 "Recover a saved operation after resolving a failure. This does not reset "
 "assignments or remove leases."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1371 files/usr/local/pkg/dgpd.inc:1423
+#: files/usr/local/pkg/dgpd.inc:1797 files/usr/local/pkg/dgpd.inc:1883
 msgid "Release Ownership"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1393
+#: files/usr/local/pkg/dgpd.inc:1884
 msgid ""
 "Release the DGPD reservation while leaving the current native DHCPv6 "
 "configuration unchanged."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1389
+#: files/usr/local/pkg/dgpd.inc:1870
 msgid ""
 "Remove the native PD pool and release the DGPD reservation. Warning: Active "
 "IA_PD leases in this DGPD-owned pool will be revoked. This interrupts "
@@ -555,203 +712,221 @@ msgid ""
 "reconfiguration."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1418
+#: files/usr/local/pkg/dgpd.inc:1819
 msgid "Remove the native pool and release its DGPD reservation."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1416
+#: files/usr/local/pkg/dgpd.inc:1816
 msgid "Remove the native pool and retain the DGPD reservation."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1421
+#: files/usr/local/pkg/dgpd.inc:1823
 msgid "Replace an external native change with the saved DGPD assignment."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:701
+#: files/usr/local/pkg/dgpd.inc:961
 msgid "Requested transition does not match the assignment status"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1369 files/usr/local/pkg/dgpd.inc:1421
+#: files/usr/local/pkg/dgpd.inc:351
+msgid "Required native pfSense API unavailable"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1795 files/usr/local/pkg/dgpd.inc:1878
 msgid "Restore Assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1419
+#: files/usr/local/pkg/dgpd.inc:1821
 msgid "Restore Save Settings for an interrupted pending operation."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1388 files/usr/local/pkg/dgpd.inc:1417
+#: files/usr/local/pkg/dgpd.inc:1817 files/usr/local/pkg/dgpd.inc:1868
 msgid "Revalidate and restore a disabled reservation."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1391
+#: files/usr/local/pkg/dgpd.inc:1879
 msgid "Revalidate and restore the saved DGPD assignment."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:775
+#: files/usr/local/pkg/dgpd.inc:1040
 #, php-format
 msgid "Revoked %d active IA_PD lease(s). "
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:831
+#: files/usr/local/pkg/dgpd.inc:409
+msgid "Router Advertisements (radvd)"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1098
 msgid "SAVED: restoration activation and verification pending"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1153
+#: files/usr/local/pkg/dgpd.inc:1986
+msgid "STALE"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1565
 msgid "STALE / disabled"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1364 files/usr/local/pkg/dgpd.inc:1415
+#: files/usr/local/pkg/dgpd.inc:1790 files/usr/local/pkg/dgpd.inc:1885
 msgid "Save Settings"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1213
+#: files/usr/local/pkg/dgpd.inc:1157
 msgid "Save Settings restored; pending intent and ownership are retained."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:818
+#: files/usr/local/pkg/dgpd.inc:1083 files/usr/local/pkg/dgpd.inc:1137
 msgid "Saved assignment overlaps another DGPD assignment"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1378
+#: files/usr/local/pkg/dgpd.inc:2056
+msgid "Saving staged settings"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1492
+msgid "Select Save Settings to finalize deletion."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1493
+msgid "Select Save Settings to finalize operation."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1806
 msgid "Select an eligible Track6 interface with active Kea DHCPv6."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1541
+#: files/usr/local/pkg/dgpd.inc:1619
+msgid "Settings are unchanged."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1490
+msgid "Settings staged."
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:2033
 msgid "Showing the first 256 candidates."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:50
+#: files/usr/local/pkg/dgpd_kea.inc:53
 msgid "Status"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1423
+#: files/usr/local/pkg/dgpd.inc:1827
 msgid "Stop managing the assignment without changing native DHCPv6 settings."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1090
+#: files/usr/local/pkg/dgpd.inc:1475
 msgid "Success"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1525
+#: files/usr/local/pkg/dgpd.inc:2017
 msgid "The current upstream is occupied by these native networks:"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1152
+#: files/usr/local/pkg/dgpd.inc:1564
 msgid ""
 "The delegated prefix changed. Downstream routers may require DHCPv6-PD "
 "renewal or manual reconfiguration."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1029
+#: files/usr/local/pkg/dgpd.inc:1367
 msgid "The native pfSense DHCPv6 save routine failed; pending state retained"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1026
+#: files/usr/local/pkg/dgpd.inc:1364
 msgid "The native pfSense DHCPv6 save routine is unavailable"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:733
+#: files/usr/local/pkg/dgpd.inc:2060
+msgid ""
+"This action will interrupt the downstream network and revoke its active "
+"IA_PD lease. Are you sure?"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:995
 msgid ""
 "This action will interrupt the downstream network and revoke its active "
 "IA_PD lease. Confirm the warning to continue."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1495
+#: files/usr/local/pkg/dgpd.inc:1968
 msgid "UNMANAGED"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1512
+#: files/usr/local/pkg/dgpd.inc:2004
 msgid "Unavailable"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:117
+#: files/usr/local/pkg/dgpd.inc:279
 msgid "Unsupported DGPD Kea command"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:674
+#: files/usr/local/pkg/dgpd.inc:934
 msgid "Unsupported DGPD action"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:55
+#: files/usr/local/pkg/dgpd.inc:126
 msgid "Unsupported DGPD state; manual migration required"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:109
+#: files/usr/local/pkg/dgpd.inc:271
 msgid "Unsupported Kea DHCPv6 UNIX control socket path"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:393
+#: files/usr/local/pkg/dgpd.inc:606
 msgid "Unsupported Router Advertisement prefix"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1357
+#: files/usr/local/pkg/dgpd.inc:1783
 msgid "Upstream Pool"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1372
+#: files/usr/local/pkg/dgpd.inc:1799
 msgid "Usage"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1385
+#: files/usr/local/pkg/dgpd.inc:1858
 msgid "Validate and stage the assignment. Use Save Settings to commit it."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1414
+#: files/usr/local/pkg/dgpd.inc:1814
 msgid "Validate and stage the displayed assignment."
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:1089
+#: files/usr/local/pkg/dgpd.inc:1985
+msgid "WAITING"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:1474 files/usr/local/pkg/dgpd.inc:2057
 msgid "Warning"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:40
+#: files/usr/local/pkg/dgpd_kea.inc:43
 msgid "absent"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd.inc:100
+#: files/usr/local/pkg/dgpd.inc:1411
+msgid "pfSense could not initialize DGPD configuration"
+msgstr ""
+
+#: files/usr/local/pkg/dgpd.inc:257
 msgid "pfSense could not save DGPD configuration"
 msgstr ""
 
-#: files/usr/local/pkg/dgpd_kea.inc:59
-msgid "pfSense form framework is unavailable"
-msgstr ""
-
-#: files/usr/local/pkg/dgpd_kea.inc:37
-msgid "selected"
-msgstr ""
-
-msgid "Beta Software"
-msgstr ""
-
-msgid "Debug logging disabled."
-msgstr ""
-
-msgid "Debug logging enabled."
-msgstr ""
-
-msgid "Enable Debug Logging"
-msgstr ""
-
-msgid "Record detailed allocator, prefix-source, reconciliation, Kea validation, and retry decisions. Disable this option during normal operation."
-msgstr ""
-
-msgid "Save the logging setting and, when an assignment is pending, verify the live Kea pool and finalize DGPD status."
-msgstr ""
-
-msgid "Settings are unchanged."
-msgstr ""
-
-msgid "This version is intended for testing. Review DGPD status and logs after configuration changes. For evaluation and troubleshooting, enable debug logging at the bottom of this page."
-msgstr ""
-
+#: files/usr/local/pkg/dgpd.inc:84
 msgid "pfSense could not save the DGPD logging setting"
 msgstr ""
 
-msgid "Assignment Workflow"
+#: files/usr/local/pkg/dgpd_kea.inc:62
+msgid "pfSense form framework is unavailable"
 msgstr ""
 
-msgid "Assignment State"
+#: files/usr/local/pkg/dgpd_kea.inc:40
+msgid "selected"
 msgstr ""
 
-msgid "Conflict Resolution"
+#: files/usr/local/pkg/dgpd.inc:359
+msgid "socat"
 msgstr ""
